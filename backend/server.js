@@ -34,7 +34,7 @@ import notificationRoutes from "./routes/notification.route.js";
 import stripeRoutes from "./routes/stripe.route.js";
 import wishlistRoutes from './routes/wishlist.route.js';
 import aichatRoutes from "./routes/ai_chat.routes.js";
-import populatePinecone from "./utils/populatePinecone.js"; // Import your function to populate Pinecone
+// import populatePinecone from "./utils/populatePinecone.js"; // Import your function to populate Pinecone
 
 
 const __filename = fileURLToPath(import.meta.url);
@@ -114,7 +114,7 @@ app.use("/api/transportation", transportationRoutes);
 app.use("/api/notifications", notificationRoutes);
 app.use("/api/stripe", stripeRoutes);
 app.use('/api/wishlist', wishlistRoutes);
-app.use("/api/chat", aichatRoutes);
+app.use("/api/aichat", aichatRoutes);
 
 // Tourist preferences routes
 const router = express.Router();
