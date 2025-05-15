@@ -93,7 +93,9 @@ import AdminNotificationsPage from "./pages/admin/AdminNotificationsPage";
 import SellerNotificationsPage from "./pages/seller/SellerNotificationsPage";
 
 // Import the ChatWidget component
-import ChatWidget from './components/chatWidget'; // Adjust path if needed
+import ChatWidget from './components/chatWidget'; 
+import "bootstrap/dist/js/bootstrap.bundle.min.js";
+import "bootstrap/dist/css/bootstrap.min.css";
 
 function App() {
   return (
