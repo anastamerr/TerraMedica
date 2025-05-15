@@ -60,7 +60,7 @@ Whether you’re seeking post-operative recovery in serene landscapes or a rejuv
 <div align="center">
   <!-- For GitHub-hosted .mp4 video -->
   <video width="600" controls>
-    <source src="assets/TerraMedica-preview.mp4" type="video/mp4">
+    <source src="assets/terramedica-preview.mp4" type="video/mp4">
     Your browser does not support the video tag.
   </video>
   </div>
