@@ -1,81 +1,149 @@
-/* Add these styles to your CSS for the TreatmentCard component */
-
-.treatment-card {
-  background-color: #ffffff;
-  border-radius: 8px;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-  margin: 15px 0;
-  padding: 16px;
-  border-left: 4px solid #28a745;
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
+.heka-treatment-card {
+  border: none !important;
+  border-radius: 12px !important;
+  background-color: #ffffff !important;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1) !important;
+  transition: all 0.3s ease;
+  overflow: hidden;
+  border-left: 5px solid #1e7b46 !important; /* Green accent line */
+  margin-bottom: 16px !important;
 }
 
-.treatment-card:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+.heka-treatment-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15) !important;
 }
 
-.treatment-title {
-  color: #17a2b8;
-  margin-top: 0;
-  margin-bottom: 12px;
-  font-size: 1.1em;
-  font-weight: 600;
+.heka-treatment-title {
+  color: #1e7b46 !important; /* Egyptian green */
+  font-size: 1.15em !important;
+  font-weight: 600 !important;
+  margin-bottom: 15px !important;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+  padding-bottom: 10px;
+  display: flex;
+  align-items: center;
 }
 
-.treatment-details {
+.heka-treatment-title::before {
+  content: "";
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  background-color: #1e7b46;
+  border-radius: 50%;
+  margin-right: 8px;
+}
+
+.heka-treatment-card {
+  border: none !important;
+  border-radius: 12px !important;
+  background-color: #ffffff !important;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1) !important;
+  transition: all 0.3s ease;
+  overflow: hidden;
+  border-left: 5px solid #1e7b46 !important; /* Green accent line */
+  margin-bottom: 16px !important;
+}
+
+.heka-treatment-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15) !important;
+}
+
+.heka-treatment-title {
+  color: #1e7b46 !important; /* Egyptian green */
+  font-size: 1.15em !important;
+  font-weight: 600 !important;
+  margin-bottom: 15px !important;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+  padding-bottom: 10px;
+  display: flex;
+  align-items: center;
+}
+
+.heka-treatment-title::before {
+  content: "";
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  background-color: #1e7b46;
+  border-radius: 50%;
+  margin-right: 8px;
+}
+
+.heka-treatment-details {
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 12px;
 }
 
-.detail-item {
+.heka-detail-icon {
+  color: #1e7b46;
   display: flex;
   align-items: flex-start;
-  padding-bottom: 8px;
+  padding-top: 4px;
 }
 
-.detail-icon {
-  color: #6c757d;
-  margin-right: 12px;
-  margin-top: 3px;
-}
-
-.detail-label {
+.heka-detail-label {
   font-weight: 600;
   font-size: 0.85em;
   color: #495057;
-  margin-bottom: 2px;
+  margin-bottom: 3px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
 }
 
-.detail-value {
+.heka-detail-value {
   font-size: 0.95em;
   color: #212529;
-  line-height: 1.4;
+  line-height: 1.5;
 }
 
-.eco-badge {
-  display: inline-block;
-  background-color: #d4edda;
-  color: #155724;
-  font-size: 0.75em;
-  padding: 2px 8px;
-  border-radius: 12px;
-  margin-left: 6px;
-  vertical-align: middle;
+.heka-eco-badge {
+  margin-left: 8px !important;
+  background-color: #28a745 !important;
+  font-weight: normal !important;
+  font-size: 0.7em !important;
+  padding: 0.35em 0.65em !important;
 }
 
-/* For mobile responsiveness */
+/* Dividers between sections */
+.heka-treatment-card .row:not(:last-child) {
+  margin-bottom: 8px;
+  padding-bottom: 8px;
+  border-bottom: 1px dashed rgba(0, 0, 0, 0.05);
+}
+
+/* Special styling for different properties */
+.heka-treatment-card .heka-detail-label:contains("Benefits") {
+  color: #0d6efd;
+}
+
+.heka-treatment-card .heka-detail-label:contains("Sustainability") {
+  color: #198754;
+}
+
+.heka-treatment-card .heka-detail-label:contains("Cost") {
+  color: #dc3545;
+}
+
+/* Mobile responsiveness */
 @media (max-width: 576px) {
-  .treatment-card {
-    padding: 12px;
+  .heka-treatment-card {
+    margin-left: -5px;
+    margin-right: -5px;
   }
   
-  .detail-item {
-    padding-bottom: 6px;
+  .heka-treatment-title {
+    font-size: 1.05em !important;
   }
   
-  .detail-icon {
-    margin-right: 8px;
+  .heka-detail-label {
+    font-size: 0.8em;
+  }
+  
+  .heka-detail-value {
+    font-size: 0.9em;
   }
 }
