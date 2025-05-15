@@ -1,10 +1,8 @@
-/* Chat Widget General */
-.chat-widget-icon {
+.heka-chat-widget-icon {
   position: fixed;
-  bottom: 20px;
-  right: 20px;
-  background-color: #06c690;
-  /* Primary blue, change as needed */
+  bottom: 25px;
+  right: 25px;
+  background-color: #1e7b46; /* Egyptian green color */
   color: white;
   width: 60px;
   height: 60px;
@@ -13,258 +11,323 @@
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
   z-index: 1000;
-  transition: transform 0.2s ease-in-out;
+  transition: all 0.3s ease-in-out;
 }
 
-.chat-widget-icon:hover {
-  transform: scale(1.1);
-  background-color: #21861a;
-  /* Darker blue on hover */
+.heka-chat-widget-icon:hover {
+  transform: scale(1.05);
+  background-color: #155d35; /* Darker green on hover */
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.25);
 }
 
-.chat-widget-icon svg {
-  width: 32px;
-  /* Adjust icon size */
-  height: 32px;
-}
-
-.chat-widget-tooltip {
+.heka-chat-widget-tooltip {
   visibility: hidden;
-  width: 120px;
-  background-color: #555;
+  width: 180px;
+  background-color: rgba(0, 0, 0, 0.8);
   color: #fff;
   text-align: center;
   border-radius: 6px;
-  padding: 5px 0;
+  padding: 8px 12px;
   position: absolute;
   z-index: 1;
   bottom: 125%;
   /* Position the tooltip above the icon */
   left: 50%;
-  margin-left: -60px;
-  /* Use half of the width (120/2 = 60), to center it */
+  margin-left: -90px; /* Half of the width */
   opacity: 0;
-  transition: opacity 0.3s;
+  transition: opacity 0.3s, visibility 0.3s;
+  font-size: 0.85rem;
 }
 
-.chat-widget-icon:hover .chat-widget-tooltip {
+.heka-chat-widget-icon:hover .heka-chat-widget-tooltip {
   visibility: visible;
   opacity: 1;
 }
 
-
-.chat-widget-window {
+/* Chat Window Styling */
+.heka-chat-widget-window {
   position: fixed;
-  bottom: 20px;
-  right: 20px;
-  width: 370px;
-  /* Increased width */
-  max-width: 90vw;
-  height: 550px;
-  /* Increased height */
-  max-height: 80vh;
-  background-color: #ffffff;
-  border-radius: 10px;
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+  bottom: 25px;
+  right: 25px;
+  width: 450px; /* Wider for better readability */
+  max-width: 95vw;
+  height: 650px; /* Taller for more content */
+  max-height: 90vh;
+  border-radius: 12px;
   display: flex;
   flex-direction: column;
   z-index: 1000;
   overflow: hidden;
-  /* Prevent content from spilling */
-  border: 1px solid #e0e0e0;
+  border: none;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
 }
 
-.chat-widget-header {
-  background-color: #06c690;
-  /* Primary blue */
+.heka-chat-widget-header {
+  background: linear-gradient(135deg, #1e7b46, #2a9d8f); /* Gradient for visual interest */
   color: white;
-  padding: 12px 15px;
+  padding: 14px 20px;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  border-top-left-radius: 10px;
-  border-top-right-radius: 10px;
+  border: none;
 }
 
-.chat-widget-header h3 {
+.heka-header-title {
+  display: flex;
+  flex-direction: column;
+}
+
+.heka-header-title h3 {
   margin: 0;
   font-size: 1.1em;
+  font-weight: 600;
 }
 
-.chat-widget-close-btn {
-  background: none;
-  border: none;
-  color: white;
-  cursor: pointer;
-  padding: 5px;
+.heka-header-title small {
+  font-size: 0.8em;
+  opacity: 0.9;
+}
+
+.heka-header-controls {
   display: flex;
   align-items: center;
-  justify-content: center;
 }
 
-.chat-widget-close-btn svg {
-  width: 20px;
-  height: 20px;
+.heka-chat-widget-close-btn,
+.heka-chat-widget-minimize-btn {
+  color: white !important;
+  padding: 2px;
+  margin-left: 10px;
 }
 
+.heka-chat-widget-close-btn:hover,
+.heka-chat-widget-minimize-btn:hover {
+  color: rgba(255, 255, 255, 0.8) !important;
+}
 
-.chat-widget-messages {
+.heka-chat-widget-messages {
   flex-grow: 1;
-  padding: 15px;
+  padding: 18px;
   overflow-y: auto;
   display: flex;
   flex-direction: column;
-  gap: 10px;
-  /* Space between messages */
-  background-color: #f9f9f9;
-  /* Light background for message area */
+  gap: 12px; /* Space between messages */
+  background-color: #f8f9fa; /* Light background for contrast */
+  transition: height 0.3s ease;
 }
 
-.chat-message {
+.heka-chat-widget-messages.minimized {
+  height: 80px;
+  overflow-y: hidden;
+}
+
+/* Scrollbar styling */
+.heka-chat-widget-messages::-webkit-scrollbar {
+  width: 6px;
+}
+
+.heka-chat-widget-messages::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0.05);
+  border-radius: 3px;
+}
+
+.heka-chat-widget-messages::-webkit-scrollbar-thumb {
+  background: rgba(0, 0, 0, 0.2);
+  border-radius: 3px;
+}
+
+.heka-chat-widget-messages::-webkit-scrollbar-thumb:hover {
+  background: rgba(0, 0, 0, 0.3);
+}
+
+/* Message styling */
+.heka-chat-message {
   display: flex;
-  margin-bottom: 10px;
-  max-width: 85%;
-  /* Max width for bubbles */
+  margin-bottom: 12px;
+  max-width: 95%; /* Allow messages to be wider */
 }
 
-.chat-message.user {
+.heka-chat-message.user {
   justify-content: flex-end;
-  /* Align user messages to the right */
   margin-left: auto;
-  /* Push to the right */
 }
 
-.chat-message.assistant {
+.heka-chat-message.assistant {
   justify-content: flex-start;
-  /* Align assistant messages to the left */
   margin-right: auto;
-  /* Push to the left */
 }
 
-.chat-message-bubble {
-  padding: 10px 15px;
+.heka-chat-message-bubble {
+  padding: 14px 16px;
   border-radius: 18px;
   font-size: 0.95em;
-  line-height: 1.4;
+  line-height: 1.5;
   word-wrap: break-word;
+  box-shadow: 0 1px 2px rgba(0,0,0,0.1);
 }
 
-.chat-message.user .chat-message-bubble {
-  background-color: #06c690;
-  /* User message background */
+.heka-chat-message.user .heka-chat-message-bubble {
+  background-color: #1e7b46; /* Egyptian green for user */
   color: white;
   border-bottom-right-radius: 5px;
-  /* Typical chat bubble shape */
 }
 
-.chat-message.assistant .chat-message-bubble {
-  background-color: #e9ecef;
-  /* Assistant message background */
+.heka-chat-message.assistant .heka-chat-message-bubble {
+  background-color: white; /* White for assistant */
   color: #333;
   border-bottom-left-radius: 5px;
-  /* Typical chat bubble shape */
+  border-left: 3px solid #1e7b46; /* Green accent */
 }
 
-.chat-message-bubble p {
-  margin: 0;
+/* Structured message content styling */
+.heka-regular-message {
+  white-space: pre-wrap;
 }
 
-.chat-message-sources {
-  margin-top: 8px;
+.heka-structured-message {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.heka-message-intro {
+  margin-bottom: 12px;
+  font-weight: 500;
+  padding-bottom: 8px;
+  border-bottom: 1px solid rgba(0,0,0,0.07);
+}
+
+.heka-treatment-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.heka-message-closing {
+  margin-top: 12px;
+  padding-top: 8px;
+  border-top: 1px solid rgba(0,0,0,0.07);
+  font-style: italic;
+  color: #495057;
+}
+
+/* Sources styling */
+.heka-chat-message-sources {
+  margin-top: 12px;
   font-size: 0.8em;
-  opacity: 0.8;
-  border-top: 1px solid rgba(0, 0, 0, 0.1);
-  padding-top: 6px;
+  border-top: 1px solid rgba(0,0,0,0.1);
+  padding-top: 10px;
 }
 
-.chat-message-sources strong {
-  display: block;
-  margin-bottom: 4px;
+.heka-sources-title {
+  display: flex;
+  align-items: center;
+  margin-bottom: 5px;
+  color: #495057;
 }
 
-.chat-message-sources ul {
+.heka-sources-list {
   list-style-type: none;
   padding-left: 0;
   margin: 0;
 }
 
-.chat-message-sources li {
-  padding: 2px 0;
-}
-
-
-.chat-widget-input-area {
+.heka-sources-list li {
+  padding: 4px 0;
   display: flex;
-  padding: 10px 15px;
-  border-top: 1px solid #e0e0e0;
-  background-color: #ffffff;
+  flex-direction: column;
+  border-bottom: 1px dotted rgba(0,0,0,0.05);
+  padding-bottom: 6px;
+  margin-bottom: 2px;
 }
 
-.chat-widget-input-area input {
-  flex-grow: 1;
-  padding: 10px;
-  border: 1px solid #ccc;
-  border-radius: 20px;
-  margin-right: 10px;
+.heka-source-title {
+  font-weight: 500;
+}
+
+.heka-source-location {
+  color: #6c757d;
   font-size: 0.95em;
 }
 
-.chat-widget-input-area input:focus {
-  outline: none;
-  border-color: #06c690;
-  box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, .25);
+.heka-source-badges {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+  margin-top: 3px;
 }
 
-
-.chat-widget-input-area button {
-  padding: 10px 18px;
-  background-color: #06c690;
-  color: white;
-  border: none;
-  border-radius: 20px;
-  cursor: pointer;
-  font-size: 0.95em;
-  transition: background-color 0.2s;
+.heka-source-badge {
+  display: flex !important;
+  align-items: center;
+  font-size: 0.75em !important;
+  font-weight: normal !important;
+  padding: 0.25em 0.6em !important;
 }
 
-.chat-widget-input-area button:hover {
-  background-color: #21861a;
+/* Input area styling */
+.heka-chat-widget-input-area {
+  background-color: #fff;
+  border-top: 1px solid rgba(0,0,0,0.1);
+  padding: 12px !important;
 }
 
-.chat-widget-input-area button:disabled {
-  background-color: #cccccc;
-  cursor: not-allowed;
+.heka-chat-input {
+  border-radius: 20px !important;
+  padding-left: 15px !important;
+  box-shadow: none !important;
+  border: 1px solid rgba(0,0,0,0.2) !important;
+}
+
+.heka-chat-input:focus {
+  border-color: #1e7b46 !important;
+  box-shadow: 0 0 0 0.2rem rgba(30, 123, 70, 0.25) !important;
+}
+
+.heka-send-btn {
+  border-radius: 50% !important;
+  width: 38px;
+  height: 38px;
+  padding: 0 !important;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-left: 8px;
+  background-color: #1e7b46 !important;
+  border-color: #1e7b46 !important;
+}
+
+.heka-send-btn:hover {
+  background-color: #155d35 !important;
+  border-color: #155d35 !important;
 }
 
 /* Typing indicator */
-.typing-indicator {
+.heka-typing-indicator {
   display: flex;
   align-items: center;
-  padding: 10px 15px;
-  /* Match bubble padding */
+  padding: 12px 16px;
+  width: auto;
 }
 
-.typing-indicator span {
+.heka-typing-indicator span {
   height: 8px;
   width: 8px;
   margin: 0 2px;
-  background-color: #8e8e8e;
-  /* Color of the dots */
+  background-color: #1e7b46;
   border-radius: 50%;
   display: inline-block;
-  -webkit-animation: bounce 1.3s infinite ease-in-out;
-  animation: bounce 1.3s infinite ease-in-out;
   animation: bounce 1.3s infinite ease-in-out;
 }
 
-.typing-indicator span:nth-of-type(1) {
-  animation-delay: -0.3s;
+.heka-typing-indicator span:nth-of-type(1) {
+  animation-delay: -0.32s;
 }
 
-.typing-indicator span:nth-of-type(2) {
-  animation-delay: -0.15s;
+.heka-typing-indicator span:nth-of-type(2) {
+  animation-delay: -0.16s;
 }
 
 @keyframes bounce {
@@ -280,65 +343,34 @@
   }
 }
 
-.chat-message-bubble p {
-  margin: 0 0 12px 0;
+/* Additional styling for badge pills */
+.badge {
+  font-size: 0.75em !important;
+  font-weight: normal !important;
 }
 
-/* Treatment option styles */
-.treatment-option {
-  margin: 15px 0;
-  padding: 12px;
-  background-color: rgba(255, 255, 255, 0.7);
-  border-radius: 8px;
-  border-left: 3px solid #28a745;
-}
-
-.treatment-option h4 {
-  margin: 0 0 8px 0;
-  color: #06c690;
-  font-size: 1.05em;
-}
-
-.treatment-detail {
-  display: flex;
-  margin-bottom: 6px;
-}
-
-.detail-label {
-  font-weight: bold;
-  min-width: 110px;
-  color: #555;
-}
-
-.detail-value {
-  flex: 1;
-}
-
-/* Sustainability indicator */
-.sustainability-indicator {
-  display: inline-block;
-  padding: 2px 6px;
-  border-radius: 12px;
-  font-size: 0.8em;
-  margin-left: 5px;
-  background-color: #dff0d8;
-  color: #3c763d;
-}
-
-/* Improve the scrollbar in the chat */
-.chat-widget-messages::-webkit-scrollbar {
-  width: 6px;
-}
-
-.chat-widget-messages::-webkit-scrollbar-track {
-  background: #f1f1f1;
-}
-
-.chat-widget-messages::-webkit-scrollbar-thumb {
-  background: #c1c1c1;
-  border-radius: 3px;
-}
-
-.chat-widget-messages::-webkit-scrollbar-thumb:hover {
-  background: #a8a8a8;
+/* Media query for mobile screens */
+@media (max-width: 576px) {
+  .heka-chat-widget-window {
+    width: 90vw;
+    height: 80vh;
+    bottom: 10px;
+    right: 10px;
+  }
+  
+  .heka-chat-widget-header {
+    padding: 10px 15px;
+  }
+  
+  .heka-chat-widget-messages {
+    padding: 12px;
+  }
+  
+  .heka-chat-message-bubble {
+    padding: 10px 14px;
+  }
+  
+  .heka-chat-widget-input-area {
+    padding: 8px !important;
+  }
 }

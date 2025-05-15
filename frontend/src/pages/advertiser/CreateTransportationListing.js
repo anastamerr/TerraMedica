@@ -20,7 +20,12 @@ import {
   FaChevronRight,
   FaTimes,
   FaPlus,
-  FaArrowLeft
+  FaArrowLeft,
+  FaLeaf, 
+  FaStar, 
+  FaRegStar, 
+  FaExclamationTriangle, 
+  FaInfoCircle
 } from "react-icons/fa";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
@@ -40,13 +45,21 @@ const CreateTransportationListing = () => {
     dropoffLocation: "",
     description: "",
     features: [],
+    fuelType: "",
+    sustainabilityRating: 3,
+    ecoFriendlyFeatures: [],
+    carbon: null
   });
 
   const [error, setError] = useState("");
   const [success, setSuccess] = useState("");
   const [loading, setLoading] = useState(false);
+  const [estimatedEmissions, setEstimatedEmissions] = useState(null);
+  const [carbonSavings, setCarbonSavings] = useState(null);
+  const [autoRating, setAutoRating] = useState(null);
 
   const vehicleTypes = ["Car", "Van", "Bus", "Minibus", "Limousine"];
+  const fuelTypes = ["Gasoline", "Diesel", "Electric", "Hybrid", "Hydrogen", "Natural Gas"];
 
   const features = [
     "Air Conditioning",
@@ -59,9 +72,72 @@ const CreateTransportationListing = () => {
     "Driver Included",
   ];
 
+  const calculateSustainability = (vehicleType, fuelType) => {
+    if (!vehicleType || !fuelType) return;
+    
+    const baseEmissions = {
+      Car: 120,
+      Van: 180,
+      Bus: 70,
+      Minibus: 90,
+      Limousine: 250
+    };
+    
+    const fuelFactors = {
+      Gasoline: 1.0,
+      Diesel: 0.9,
+      Electric: 0.2,
+      Hybrid: 0.6,
+      Hydrogen: 0.3,
+      "Natural Gas": 0.7
+    };
+    
+    const baseEmission = baseEmissions[vehicleType] || 150;
+    const emissionFactor = fuelFactors[fuelType] || 1.0;
+    const calculatedEmissions = Math.round(baseEmission * emissionFactor);
+    
+    const standardEmissions = baseEmission;
+    const savings = standardEmissions - calculatedEmissions;
+    
+    let rating = 3;
+    if (emissionFactor <= 0.3) rating = 5;
+    else if (emissionFactor <= 0.6) rating = 4;
+    else if (emissionFactor <= 0.8) rating = 3;
+    else if (emissionFactor <= 0.9) rating = 2;
+    else rating = 1;
+    
+    setEstimatedEmissions(calculatedEmissions);
+    setCarbonSavings(savings);
+    setAutoRating(rating);
+    
+    setFormData(prev => ({
+      ...prev,
+      carbon: calculatedEmissions,
+      sustainabilityRating: rating,
+      ecoFriendlyFeatures: getFeaturesForFuelType(fuelType)
+    }));
+  };
+
+  const getFeaturesForFuelType = (fuelType) => {
+    const baseFeatures = [];
+    
+    switch(fuelType) {
+      case "Electric":
+        return [...baseFeatures, "Zero Emissions", "Energy Recovery Braking"];
+      case "Hybrid":
+        return [...baseFeatures, "Regenerative Braking", "Auto Start-Stop"];
+      case "Hydrogen":
+        return [...baseFeatures, "Water Vapor Emissions", "Fast Refueling"];
+      case "Natural Gas":
+        return [...baseFeatures, "Lower CO2", "Reduced NOx"];
+      default:
+        return baseFeatures;
+    }
+  };
+
   const handleInputChange = (e) => {
     const { name, value, type } = e.target;
-
+    
     if (type === "number") {
       setFormData((prev) => ({
         ...prev,
@@ -72,6 +148,17 @@ const CreateTransportationListing = () => {
         ...prev,
         [name]: value,
       }));
+    }
+    
+    if (name === "vehicleType" || name === "fuelType") {
+      const updatedFormData = {
+        ...formData,
+        [name]: value
+      };
+      calculateSustainability(
+        name === "vehicleType" ? value : formData.vehicleType,
+        name === "fuelType" ? value : formData.fuelType
+      );
     }
   };
 
@@ -156,7 +243,6 @@ const CreateTransportationListing = () => {
       );
 
       setSuccess("Transportation listing created successfully!");
-      // Reset form
       setFormData({
         vehicleType: "",
         model: "",
@@ -168,9 +254,12 @@ const CreateTransportationListing = () => {
         dropoffLocation: "",
         description: "",
         features: [],
+        fuelType: "",
+        sustainabilityRating: 3,
+        ecoFriendlyFeatures: [],
+        carbon: null
       });
 
-      // Redirect after a short delay
       setTimeout(() => {
         navigate("/advertiser/transportation");
       }, 2000);
@@ -185,7 +274,6 @@ const CreateTransportationListing = () => {
     <>
       <AdvertiserNavbar />
       <div className="create-transportation">
-        {/* Hero Section */}
         <div style={heroStyle}>
           <div style={overlayStyle}></div>
           <Container style={{ position: 'relative', zIndex: 2 }}>
@@ -208,7 +296,6 @@ const CreateTransportationListing = () => {
         <Container className="py-5">
           <Card className="shadow-sm border-0 rounded-3">
             <Card.Body className="p-4">
-              {/* Header Section */}
               <div className="d-flex align-items-center mb-4">
                 <div 
                   className="icon-circle me-3"
@@ -263,6 +350,34 @@ const CreateTransportationListing = () => {
                         {vehicleTypes.map((type) => (
                           <option key={type} value={type}>{type}</option>
                         ))}
+                      </Form.Select>
+                    </Form.Group>
+                  </Col>
+
+                  <Col md={6}>
+                    <Form.Group>
+                      <Form.Label className="fw-bold">
+                        <FaLeaf className="me-2 text-success" />
+                        Fuel Type
+                      </Form.Label>
+                      <Form.Select
+                        name="fuelType"
+                        value={formData.fuelType || ""}
+                        onChange={handleInputChange}
+                        required
+                        className="rounded-pill"
+                        style={{
+                          padding: '0.75rem 1.25rem',
+                          border: '2px solid #eee'
+                        }}
+                      >
+                        <option value="">Select fuel type</option>
+                        <option value="Gasoline">Gasoline</option>
+                        <option value="Diesel">Diesel</option>
+                        <option value="Electric">Electric</option>
+                        <option value="Hybrid">Hybrid</option>
+                        <option value="Hydrogen">Hydrogen</option>
+                        <option value="Natural Gas">Natural Gas</option>
                       </Form.Select>
                     </Form.Group>
                   </Col>
@@ -442,7 +557,7 @@ const CreateTransportationListing = () => {
                       />
                     </Form.Group>
                   </Col>
-
+                        
                   <Col md={12}>
                     <Form.Group>
                       <Form.Label className="fw-bold">
@@ -461,6 +576,44 @@ const CreateTransportationListing = () => {
                           />
                         ))}
                       </div>
+                    </Form.Group>
+                  </Col>
+
+                  <Col md={6}>
+                    <Form.Group>
+                      <Form.Label className="fw-bold">
+                        <FaLeaf className="me-2" />
+                        Estimated Emissions (g CO2/km)
+                      </Form.Label>
+                      <Form.Control
+                        type="text"
+                        value={estimatedEmissions || "N/A"}
+                        readOnly
+                        className="rounded-pill"
+                        style={{
+                          padding: '0.75rem 1.25rem',
+                          border: '2px solid #eee'
+                        }}
+                      />
+                    </Form.Group>
+                  </Col>
+
+                  <Col md={6}>
+                    <Form.Group>
+                      <Form.Label className="fw-bold">
+                        <FaStar className="me-2" />
+                        Sustainability Rating
+                      </Form.Label>
+                      <Form.Control
+                        type="text"
+                        value={autoRating || "N/A"}
+                        readOnly
+                        className="rounded-pill"
+                        style={{
+                          padding: '0.75rem 1.25rem',
+                          border: '2px solid #eee'
+                        }}
+                      />
                     </Form.Group>
                   </Col>
                 </Row>
