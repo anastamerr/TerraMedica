@@ -366,3 +366,18 @@ export const deleteTransportation = async (req, res) => {
     });
   }
 };
+
+
+export const getEcoFriendlyTransportation = async (req, res) => {
+  try {
+    const transports = await Transportation.find({
+      $or: [
+        { fuelType: { $in: ["Electric", "Hybrid"] } },
+        { sustainabilityRating: { $gte: 4 } }
+      ]
+    });
+    res.status(200).json(transports);
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+};

@@ -22,7 +22,10 @@ import {
   FaChevronRight,
   FaFilter,
   FaSearch,
-  FaCog
+  FaCog,
+  FaLeaf,
+  FaStar,
+  FaRegStar
 } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
 import { jwtDecode } from "jwt-decode";
@@ -39,6 +42,7 @@ const BookTransportation = () => {
     dateFrom: "",
     dateTo: "",
     features: [],
+    ecoFriendly: "",
   });
   const [error, setError] = useState("");
   const [success, setSuccess] = useState("");
@@ -134,6 +138,10 @@ const BookTransportation = () => {
       );
     }
 
+    if (filters.ecoFriendly === "eco") {
+      filtered = filtered.filter(t => t.ecoFriendlyFeatures && t.ecoFriendlyFeatures.length > 0);
+    }
+
     setFilteredTransportations(filtered);
   };
 
@@ -145,6 +153,7 @@ const BookTransportation = () => {
       dateFrom: "",
       dateTo: "",
       features: [],
+      ecoFriendly: "",
     });
     setFilteredTransportations(transportations);
   };
@@ -398,6 +407,28 @@ const BookTransportation = () => {
                   </Form.Group>
                 </Col>
 
+                <Col xs={12} md={4}>
+                  <Form.Group>
+                    <Form.Label className="fw-bold">
+                      <FaLeaf className="text-success me-2" />
+                      Sustainability
+                    </Form.Label>
+                    <Form.Select
+                      name="ecoFriendly"
+                      value={filters.ecoFriendly || ""}
+                      onChange={handleFilterChange}
+                      className="rounded-pill"
+                      style={{
+                        padding: '0.75rem 1.25rem',
+                        border: '2px solid #eee'
+                      }}
+                    >
+                      <option value="">All Options</option>
+                      <option value="eco">Eco-Friendly Only</option>
+                    </Form.Select>
+                  </Form.Group>
+                </Col>
+
                 <Col xs={12}>
                   <div className="d-flex gap-2">
                     <Button
@@ -462,12 +493,22 @@ const BookTransportation = () => {
                     <Card.Body className="p-4">
                       <Card.Title className="mb-3 d-flex justify-content-between align-items-center">
                         <span>{transport.vehicleType} - {transport.model}</span>
-                        <Badge 
-                          bg={transport.status === 'available' ? 'success' : 'danger'}
-                          className="rounded-pill"
-                        >
-                          {transport.status === 'available' ? 'Available' : 'Unavailable'}
-                        </Badge>
+                        <div>
+                          {(transport.fuelType === "Electric" || transport.fuelType === "Hybrid" || transport.sustainabilityRating >= 4) && (
+                            <Badge 
+                              bg="success" 
+                              className="rounded-pill me-2"
+                            >
+                              <FaLeaf className="me-1" /> Eco-Friendly
+                            </Badge>
+                          )}
+                          <Badge 
+                            bg={transport.status === 'available' ? 'primary' : 'danger'}
+                            className="rounded-pill"
+                          >
+                            {transport.status === 'available' ? 'Available' : 'Unavailable'}
+                          </Badge>
+                        </div>
                       </Card.Title>
 
                       <Card.Text>
@@ -537,6 +578,59 @@ const BookTransportation = () => {
                             <p className="text-muted mt-1 mb-0">
                               {transport.description}
                             </p>
+                          </div>
+
+                          {/* Add sustainability info section */}
+                          <div className="mt-3 p-3 bg-light rounded">
+                            <h6 className="mb-2 d-flex align-items-center">
+                              <FaLeaf className="text-success me-2" />
+                              Sustainability Information
+                            </h6>
+                            
+                            <div className="d-flex align-items-center mb-2">
+                              <div className="me-3">
+                                <span className="fw-bold">Carbon:</span> {transport.carbon} g/km
+                              </div>
+                              <div>
+                                <span className="fw-bold">Fuel Type:</span>{" "}
+                                <Badge 
+                                  bg={transport.fuelType === "Electric" ? "success" : 
+                                      transport.fuelType === "Hybrid" ? "info" : "secondary"}
+                                  className="rounded-pill"
+                                >
+                                  {transport.fuelType}
+                                </Badge>
+                              </div>
+                            </div>
+                            
+                            <div>
+                              <span className="fw-bold">Eco Rating:</span>{" "}
+                              {[...Array(5)].map((_, i) => (
+                                <span key={i} className="me-1">
+                                  {i < transport.sustainabilityRating ? 
+                                    <FaStar className="text-success" /> : 
+                                    <FaRegStar className="text-muted" />}
+                                </span>
+                              ))}
+                            </div>
+                            
+                            {transport.ecoFriendlyFeatures && transport.ecoFriendlyFeatures.length > 0 && (
+                              <div className="mt-2">
+                                <span className="fw-bold">Eco Features:</span>
+                                <div className="d-flex flex-wrap gap-2 mt-1">
+                                  {transport.ecoFriendlyFeatures.map((feature, idx) => (
+                                    <Badge 
+                                      key={idx}
+                                      bg="success" 
+                                      className="rounded-pill"
+                                      style={{ opacity: 0.7 }}
+                                    >
+                                      {feature}
+                                    </Badge>
+                                  ))}
+                                </div>
+                              </div>
+                            )}
                           </div>
                         </div>
                       </Card.Text>

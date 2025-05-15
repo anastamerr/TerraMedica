@@ -1,4 +1,5 @@
 import express from "express";
+import multer from "multer"; // Add this import
 import {
   registerAdvertiser,
   loginAdvertiser,

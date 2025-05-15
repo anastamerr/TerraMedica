@@ -10,6 +10,7 @@ import {
   getAdvertiserBookings,
   updateBookingStatus,
   getAdvertiserTransportations,
+  getEcoFriendlyTransportation,
 } from "../controllers/transportation.controller.js";
 import authMiddleware from "../middleware/auth.middleware.js";
 
@@ -18,6 +19,7 @@ const router = express.Router();
 // Public routes
 router.get("/", getAllTransportation); // Route for tourists to view all transportations
 router.get("/all", getAllTransportation); // Alternative route
+router.get("/eco-friendly", getEcoFriendlyTransportation);
 
 // Protected routes - Advertiser
 router.get(
