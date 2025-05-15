@@ -103,8 +103,8 @@ const HistoricalPlacesManagement = () => {
   const fetchHistoricalPlaces = async () => {
     try {
       const endpoint = isAdmin 
-        ? "http://localhost:5000/api/historicalplace"
-        : "http://localhost:5000/api/toursimGovernor/my-places";
+        ? "https://terramedica-backend-306ad1b57632.herokuapp.com/api/historicalplace"
+        : "https://terramedica-backend-306ad1b57632.herokuapp.com/api/toursimGovernor/my-places";
       
       const response = await axios.get(endpoint, getAuthConfig());
       setHistoricalPlaces(response.data.places || response.data);
@@ -117,7 +117,7 @@ const HistoricalPlacesManagement = () => {
   const fetchTags = async () => {
     try {
       const response = await axios.get(
-        "http://localhost:5000/api/tags",
+        "https://terramedica-backend-306ad1b57632.herokuapp.com/api/tags",
         getAuthConfig()
       );
       setTags(response.data);
@@ -129,7 +129,7 @@ const HistoricalPlacesManagement = () => {
   const fetchTourismGovernors = async () => {
     try {
       const response = await axios.get(
-        "http://localhost:5000/api/toursimGovernor",
+        "https://terramedica-backend-306ad1b57632.herokuapp.com/api/toursimGovernor",
         getAuthConfig()
       );
       setTourismGovernors(response.data);
@@ -154,13 +154,13 @@ const HistoricalPlacesManagement = () => {
       
       if (currentPlace) {
         const endpoint = isAdmin
-          ? `http://localhost:5000/api/historicalplace/${currentPlace._id}`
-          : `http://localhost:5000/api/toursimGovernor/places/${currentPlace._id}`;
+          ? `https://terramedica-backend-306ad1b57632.herokuapp.com/api/historicalplace/${currentPlace._id}`
+          : `https://terramedica-backend-306ad1b57632.herokuapp.com/api/toursimGovernor/places/${currentPlace._id}`;
         response = await axios.put(endpoint, payload, config);
       } else {
         const endpoint = isAdmin
-          ? "http://localhost:5000/api/historicalplace"
-          : "http://localhost:5000/api/toursimGovernor/places";
+          ? "https://terramedica-backend-306ad1b57632.herokuapp.com/api/historicalplace"
+          : "https://terramedica-backend-306ad1b57632.herokuapp.com/api/toursimGovernor/places";
         response = await axios.post(endpoint, payload, config);
       }
 
@@ -177,8 +177,8 @@ const HistoricalPlacesManagement = () => {
     if (window.confirm("Are you sure you want to delete this historical place?")) {
       try {
         const endpoint = isAdmin
-          ? `http://localhost:5000/api/historicalplace/${id}`
-          : `http://localhost:5000/api/toursimGovernor/places/${id}`;
+          ? `https://terramedica-backend-306ad1b57632.herokuapp.com/api/historicalplace/${id}`
+          : `https://terramedica-backend-306ad1b57632.herokuapp.com/api/toursimGovernor/places/${id}`;
         
         await axios.delete(endpoint, getAuthConfig());
         await fetchHistoricalPlaces();

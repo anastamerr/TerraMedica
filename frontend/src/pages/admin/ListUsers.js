@@ -45,7 +45,7 @@ const ListUsers = () => {
     const fetchUsers = async () => {
         try {
             const response = await axios.get(
-                'http://localhost:5000/api/admin/users',
+                'https://terramedica-backend-306ad1b57632.herokuapp.com/api/admin/users',
                 getAuthConfig()
             );
             setUsers(response.data);
@@ -59,7 +59,7 @@ const ListUsers = () => {
     const handleDelete = async (userId, userType) => {
         try {
             await axios.delete(
-                'http://localhost:5000/api/admin/users/',
+                'https://terramedica-backend-306ad1b57632.herokuapp.com/api/admin/users/',
                 {
                     ...getAuthConfig(),
                     data: { userId, userType }

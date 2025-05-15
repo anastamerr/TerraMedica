@@ -13,7 +13,7 @@ const TourDestinations = () => {
     // Fetch activities from the API
     const fetchActivities = async () => {
         try {
-            const response = await axios.get("http://localhost:5000/api/activities");
+            const response = await axios.get("https://terramedica-backend-306ad1b57632.herokuapp.com/api/activities");
             // Limit to the first 6 activities
             const limitedActivities = response.data.slice(0, 6);
             setActivities(limitedActivities);

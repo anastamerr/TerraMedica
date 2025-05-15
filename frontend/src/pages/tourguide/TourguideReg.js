@@ -22,7 +22,7 @@ const RegisterPage = () => {
     setMessage(null);
 
     try {
-      const response = await axios.post('http://localhost:5000/api/tourguide/register', formData);
+      const response = await axios.post('https://terramedica-backend-306ad1b57632.herokuapp.com/api/tourguide/register', formData);
       navigate('/tourguide');
       setMessage({ type: 'success', text: response.data.message });
     } catch (error) {

@@ -69,7 +69,7 @@ import GovernorNavbar from './GovernorNavbar';
         const token = localStorage.getItem('token');
         
         const response = await axios.get(
-          "http://localhost:5000/api/toursimGovernor/my-places",
+          "https://terramedica-backend-306ad1b57632.herokuapp.com/api/toursimGovernor/my-places",
           {
             headers: {
               Authorization: `Bearer ${token}`,
@@ -126,7 +126,7 @@ import GovernorNavbar from './GovernorNavbar';
     try {
       const token = localStorage.getItem('token');
       await axios.put(
-        `http://localhost:5000/api/toursimGovernor/places/${placeId}`,
+        `https://terramedica-backend-306ad1b57632.herokuapp.com/api/toursimGovernor/places/${placeId}`,
         editForm,
         {
           headers: { Authorization: `Bearer ${token}` }
@@ -144,7 +144,7 @@ import GovernorNavbar from './GovernorNavbar';
     try {
       const token = localStorage.getItem('token');
       await axios.delete(
-        `http://localhost:5000/api/toursimGovernor/places/${placeId}`,
+        `https://terramedica-backend-306ad1b57632.herokuapp.com/api/toursimGovernor/places/${placeId}`,
         {
           headers: { Authorization: `Bearer ${token}` }
         }

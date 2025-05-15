@@ -11,7 +11,7 @@ const ActivityUpdateForm = ({ match }) => {
   useEffect(() => {
     const fetchActivity = async () => {
       try {
-        const res = await axios.get(`http://localhost:5000/activities/${match.params.id}`);
+        const res = await axios.get(`https://terramedica-backend-306ad1b57632.herokuapp.com/activities/${match.params.id}`);
         setFormData(res.data);
       } catch (error) {
         console.error('Error fetching activity:', error);
@@ -28,7 +28,7 @@ const ActivityUpdateForm = ({ match }) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const res = await axios.put(`http://localhost:5000/activities/${match.params.id}`, formData);
+      const res = await axios.put(`https://terramedica-backend-306ad1b57632.herokuapp.com/activities/${match.params.id}`, formData);
       console.log('Activity Updated:', res.data);
     } catch (error) {
       console.error('Error updating activity:', error);
@@ -72,7 +72,7 @@ const ActivityUpdateForm = ({ match }) => {
   useEffect(() => {
     const fetchActivity = async () => {
       try {
-        const res = await axios.get(`http://localhost:5000/activities/${match.params.id}`);
+        const res = await axios.get(`https://terramedica-backend-306ad1b57632.herokuapp.com/activities/${match.params.id}`);
         setFormData(res.data);
       } catch (error) {
         console.error('Error fetching activity:', error);
@@ -89,7 +89,7 @@ const ActivityUpdateForm = ({ match }) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const res = await axios.put(`http://localhost:5000/activities/${match.params.id}`, formData);
+      const res = await axios.put(`https://terramedica-backend-306ad1b57632.herokuapp.com/activities/${match.params.id}`, formData);
       console.log('Activity Updated:', res.data);
     } catch (error) {
       console.error('Error updating activity:', error);

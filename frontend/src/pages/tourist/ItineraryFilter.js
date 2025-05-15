@@ -36,7 +36,7 @@ const ItineraryFilter = () => {
 
   const fetchItineraries = async () => {
     try {
-      const response = await axios.get("http://localhost:5000/api/itineraries");
+      const response = await axios.get("https://terramedica-backend-306ad1b57632.herokuapp.com/api/itineraries");
       setItineraries(response.data);
       setFilteredItineraries(response.data);
     } catch (error) {
@@ -47,7 +47,7 @@ const ItineraryFilter = () => {
   const fetchPreferenceTags = async () => {
     try {
       const response = await axios.get(
-        "http://localhost:5000/api/preference-tags"
+        "https://terramedica-backend-306ad1b57632.herokuapp.com/api/preference-tags"
       );
       setPreferenceOptions(response.data);
     } catch (error) {

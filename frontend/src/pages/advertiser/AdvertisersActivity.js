@@ -78,7 +78,7 @@ const AdvertiserActivities = () => {
       const token = localStorage.getItem('token');
       
       const response = await axios.get(
-        "http://localhost:5000/api/advertiser/activities/my",
+        "https://terramedica-backend-306ad1b57632.herokuapp.com/api/advertiser/activities/my",
         {
           headers: {
             Authorization: `Bearer ${token}`,

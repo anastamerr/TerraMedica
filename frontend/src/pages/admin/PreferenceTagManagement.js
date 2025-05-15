@@ -16,7 +16,7 @@ import DeleteIcon from "@mui/icons-material/Delete";
 import EditIcon from "@mui/icons-material/Edit";
 import AdminNavbar from "./AdminNavbar";
 
-const API_URL = "http://localhost:5000/api/preference-tags";
+const API_URL = "https://terramedica-backend-306ad1b57632.herokuapp.com/api/preference-tags";
 
 const PreferenceTagManagement = () => {
   const [tags, setTags] = useState([]);

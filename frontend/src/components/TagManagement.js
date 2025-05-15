@@ -22,7 +22,7 @@ import {
 } from "react-icons/fa";
 import { Link } from "react-router-dom";
 
-const API_URL = "http://localhost:5000/api/tags";
+const API_URL = "https://terramedica-backend-306ad1b57632.herokuapp.com/api/tags";
 
 const TagManagement = () => {
   const [tags, setTags] = useState([]);

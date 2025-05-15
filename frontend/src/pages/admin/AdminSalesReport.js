@@ -70,7 +70,7 @@ const AdminSalesReport = () => {
     try {
       const token = localStorage.getItem("token");
       const response = await axios.get(
-        "http://localhost:5000/api/admin/user-stats",
+        "https://terramedica-backend-306ad1b57632.herokuapp.com/api/admin/user-stats",
         {
           headers: { Authorization: `Bearer ${token}` },
         }
@@ -93,10 +93,10 @@ const AdminSalesReport = () => {
       const token = localStorage.getItem("token");
 
       const [bookingsRes, purchasesRes] = await Promise.all([
-        axios.get("http://localhost:5000/api/bookings/all", {
+        axios.get("https://terramedica-backend-306ad1b57632.herokuapp.com/api/bookings/all", {
           headers: { Authorization: `Bearer ${token}` },
         }),
-        axios.get("http://localhost:5000/api/products/purchase/all", {
+        axios.get("https://terramedica-backend-306ad1b57632.herokuapp.com/api/products/purchase/all", {
           headers: { Authorization: `Bearer ${token}` },
         }),
       ]);

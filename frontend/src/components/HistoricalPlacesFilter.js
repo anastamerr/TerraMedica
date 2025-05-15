@@ -14,8 +14,8 @@ const HistoricalPlacesFilter = () => {
       try {
         setIsLoading(true);
         const [placesResponse, tagsResponse] = await Promise.all([
-          axios.get("http://localhost:5000/api/historicalplace"),
-          axios.get("http://localhost:5000/api/tags"),
+          axios.get("https://terramedica-backend-306ad1b57632.herokuapp.com/api/historicalplace"),
+          axios.get("https://terramedica-backend-306ad1b57632.herokuapp.com/api/tags"),
         ]);
 
         const tagsMap = new Map(tagsResponse.data.map((tag) => [tag._id, tag]));

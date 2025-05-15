@@ -43,7 +43,7 @@ const TourGuideRating = () => {
       console.log("User ID from token:", userId); // Debug: Confirm extracted userId
   
       const response = await fetch(
-        `http://localhost:5000/api/bookings/user/${userId}`,
+        `https://terramedica-backend-306ad1b57632.herokuapp.com/api/bookings/user/${userId}`,
         {
           headers: {
             Authorization: `Bearer ${token}`,
@@ -124,7 +124,7 @@ const TourGuideRating = () => {
         throw new Error("Please select a rating");
       }
 
-      const response = await fetch(`http://localhost:5000/api/bookings/${bookingId}/rating`, {
+      const response = await fetch(`https://terramedica-backend-306ad1b57632.herokuapp.com/api/bookings/${bookingId}/rating`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

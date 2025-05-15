@@ -17,7 +17,7 @@ const ArchivedProducts = () => {
   const fetchArchivedProducts = async () => {
     try {
       setLoading(true);
-      const response = await axios.get('http://localhost:5000/api/products/archived');
+      const response = await axios.get('https://terramedica-backend-306ad1b57632.herokuapp.com/api/products/archived');
       setProducts(response.data.data.products);
     } catch (err) {
       setError(err.response?.data?.message || 'Failed to fetch archived products');
@@ -29,7 +29,7 @@ const ArchivedProducts = () => {
   const handleUnarchive = async (productId) => {
     try {
       setUnarchiving(productId);
-      await axios.put(`http://localhost:5000/api/products/archive/${productId}`, {
+      await axios.put(`https://terramedica-backend-306ad1b57632.herokuapp.com/api/products/archive/${productId}`, {
         isArchived: false
       });
       

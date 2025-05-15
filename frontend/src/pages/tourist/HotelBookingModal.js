@@ -132,7 +132,7 @@ const HotelBookingModal = memo(
         const totalPrice = getTotalPrice();
 
         const response = await axios.post(
-          "http://localhost:5000/api/hotels/book",
+          "https://terramedica-backend-306ad1b57632.herokuapp.com/api/hotels/book",
           {
             guests: formattedGuests,
             userId,

@@ -91,7 +91,7 @@ const TourGuideRegistration = () => {
 
     try {
       const response = await axios.post(
-        'http://localhost:5000/api/tourguide/register',
+        'https://terramedica-backend-306ad1b57632.herokuapp.com/api/tourguide/register',
         formDataToSend,
         {
           headers: {

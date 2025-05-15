@@ -24,10 +24,10 @@ const TagFilterHistoricalPlaces = () => {
       try {
         const token = localStorage.getItem('token');
         const [placesResponse, tagsResponse] = await Promise.all([
-          axios.get('http://localhost:5000/api/historicalplace', {
+          axios.get('https://terramedica-backend-306ad1b57632.herokuapp.com/api/historicalplace', {
             headers: { Authorization: `Bearer ${token}` }
           }),
-          axios.get('http://localhost:5000/api/tags', {
+          axios.get('https://terramedica-backend-306ad1b57632.herokuapp.com/api/tags', {
             headers: { Authorization: `Bearer ${token}` }
           })
         ]);

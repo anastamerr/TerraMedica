@@ -31,7 +31,7 @@ const PaymentSelection = ({
     setIsProcessing(true);
     try {
       const response = await fetch(
-        "http://localhost:5000/api/stripe/create-payment-intent",
+        "https://terramedica-backend-306ad1b57632.herokuapp.com/api/stripe/create-payment-intent",
         {
           method: "POST",
           headers: {

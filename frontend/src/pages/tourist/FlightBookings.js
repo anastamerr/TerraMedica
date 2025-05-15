@@ -70,7 +70,7 @@ const FlightBookings = () => {
 
         try {
             const response = await axios.get(
-                `http://localhost:5000/api/flights/bookings/${userId}`,
+                `https://terramedica-backend-306ad1b57632.herokuapp.com/api/flights/bookings/${userId}`,
                 {
                     headers: {
                         Authorization: `Bearer ${localStorage.getItem("token")}`,

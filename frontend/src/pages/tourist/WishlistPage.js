@@ -29,7 +29,7 @@ import Navbar from "./components/Navbar";
 import PaymentSelection from "../../components/PaymentSelection";
 import StripeWrapper from "../../components/StripeWrapper";
 
-const API_URL = "http://localhost:5000/api";
+const API_URL = "https://terramedica-backend-306ad1b57632.herokuapp.com/api";
 
 const WishlistPage = () => {
   // Add the missing state variable

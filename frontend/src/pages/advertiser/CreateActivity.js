@@ -63,8 +63,8 @@ if (!googleMapsApiKey) {
     const fetchData = async () => {
       try {
         const [categoriesRes, tagsRes] = await Promise.all([
-          axios.get("http://localhost:5000/api/activities/category"),
-          axios.get("http://localhost:5000/api/tags"),
+          axios.get("https://terramedica-backend-306ad1b57632.herokuapp.com/api/activities/category"),
+          axios.get("https://terramedica-backend-306ad1b57632.herokuapp.com/api/tags"),
         ]);
 
         setCategories(categoriesRes.data);
@@ -199,7 +199,7 @@ if (!googleMapsApiKey) {
 
       const token = localStorage.getItem('token');
       const response = await axios.post(
-        "http://localhost:5000/api/activities",
+        "https://terramedica-backend-306ad1b57632.herokuapp.com/api/activities",
         activityData,
         {
           headers: {

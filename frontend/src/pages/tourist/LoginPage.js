@@ -38,7 +38,7 @@ const TouristLogin = () => {
       console.log("Sending login request with:", formData);
 
       const response = await axios.post(
-        "http://localhost:5000/api/tourist/login",
+        "https://terramedica-backend-306ad1b57632.herokuapp.com/api/tourist/login",
         formData
       );
 

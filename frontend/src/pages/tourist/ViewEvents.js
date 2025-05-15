@@ -121,7 +121,7 @@ const ViewEvents = () => {
 
     try {
       const response = await axios.post(
-        "http://localhost:5000/api/products/validate-promo",
+        "https://terramedica-backend-306ad1b57632.herokuapp.com/api/products/validate-promo",
         {
           code: promoCode,
           userId: getUserId(),
@@ -175,7 +175,7 @@ const ViewEvents = () => {
       if (!userId) return;
 
       const response = await axios.get(
-        `http://localhost:5000/api/tourist/loyalty/${userId}`,
+        `https://terramedica-backend-306ad1b57632.herokuapp.com/api/tourist/loyalty/${userId}`,
         {
           headers: {
             Authorization: `Bearer ${localStorage.getItem("token")}`,
@@ -220,7 +220,7 @@ const ViewEvents = () => {
     try {
       const token = localStorage.getItem("token");
       const response = await axios.post(
-        "http://localhost:5000/api/tourist/bookmark-event",
+        "https://terramedica-backend-306ad1b57632.herokuapp.com/api/tourist/bookmark-event",
         {
           eventId: event._id,
           eventType: type,
@@ -252,7 +252,7 @@ const ViewEvents = () => {
       try {
         const token = localStorage.getItem("token");
         const response = await axios.get(
-          "http://localhost:5000/api/tourist/saved-events",
+          "https://terramedica-backend-306ad1b57632.herokuapp.com/api/tourist/saved-events",
           {
             headers: { Authorization: `Bearer ${token}` },
           }
@@ -320,7 +320,7 @@ const ViewEvents = () => {
       }
 
       const response = await axios.get(
-        `http://localhost:5000/api/tourist/profile/${user.username}`,
+        `https://terramedica-backend-306ad1b57632.herokuapp.com/api/tourist/profile/${user.username}`,
         {
           headers: {
             Authorization: `Bearer ${token}`,
@@ -358,7 +358,7 @@ const ViewEvents = () => {
 
         try {
           const profileResponse = await axios.get(
-            `http://localhost:5000/api/tourist/profile/${user.username}`,
+            `https://terramedica-backend-306ad1b57632.herokuapp.com/api/tourist/profile/${user.username}`,
             {
               headers: {
                 Authorization: `Bearer ${token}`,
@@ -390,16 +390,16 @@ const ViewEvents = () => {
 
         const [historicalRes, activitiesRes, itinerariesRes, categoriesRes] =
           await Promise.all([
-            axios.get("http://localhost:5000/api/historicalplace", {
+            axios.get("https://terramedica-backend-306ad1b57632.herokuapp.com/api/historicalplace", {
               headers: { Authorization: `Bearer ${token}` },
             }),
-            axios.get("http://localhost:5000/api/activities", {
+            axios.get("https://terramedica-backend-306ad1b57632.herokuapp.com/api/activities", {
               headers: { Authorization: `Bearer ${token}` },
             }),
-            axios.get("http://localhost:5000/api/itineraries", {
+            axios.get("https://terramedica-backend-306ad1b57632.herokuapp.com/api/itineraries", {
               headers: { Authorization: `Bearer ${token}` },
             }),
-            axios.get("http://localhost:5000/api/activities/category", {
+            axios.get("https://terramedica-backend-306ad1b57632.herokuapp.com/api/activities/category", {
               headers: { Authorization: `Bearer ${token}` },
             }),
             fetchLoyaltyStatus(),
@@ -518,7 +518,7 @@ const ViewEvents = () => {
   
       // Create booking
       const bookingResponse = await axios.post(
-        "http://localhost:5000/api/bookings/create",
+        "https://terramedica-backend-306ad1b57632.herokuapp.com/api/bookings/create",
         bookingData,
         {
           headers: {
@@ -531,7 +531,7 @@ const ViewEvents = () => {
         // Handle wallet payment
         if (paymentMethod === "wallet") {
           const deductResponse = await axios.post(
-            `http://localhost:5000/api/tourist/wallet/deduct/${userId}`,
+            `https://terramedica-backend-306ad1b57632.herokuapp.com/api/tourist/wallet/deduct/${userId}`,
             {
               amount: finalPrice,
               bookingId: bookingResponse.data.data._id,
@@ -572,7 +572,7 @@ const ViewEvents = () => {
         // Send receipt email
         try {
           await axios.post(
-            "http://localhost:5000/api/notify",
+            "https://terramedica-backend-306ad1b57632.herokuapp.com/api/notify",
             {
               email: user.email,
               message: receiptMessage
@@ -607,7 +607,7 @@ const ViewEvents = () => {
   const cancelBooking = async (bookingId) => {
     try {
       await axios.patch(
-        `http://localhost:5000/api/bookings/cancel/${bookingId}`,
+        `https://terramedica-backend-306ad1b57632.herokuapp.com/api/bookings/cancel/${bookingId}`,
         {},
         {
           headers: {
@@ -633,7 +633,7 @@ const ViewEvents = () => {
 
       try {
         const response = await axios.post(
-          "http://localhost:5000/api/products/validate-promo",
+          "https://terramedica-backend-306ad1b57632.herokuapp.com/api/products/validate-promo",
           {
             code,
             userId: getUserId(),

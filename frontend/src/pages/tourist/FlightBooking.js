@@ -74,7 +74,7 @@ const FlightBooking = () => {
     setError(null);
     
     try {
-      const response = await axios.post('http://localhost:5000/api/flights/search', searchParams);
+      const response = await axios.post('https://terramedica-backend-306ad1b57632.herokuapp.com/api/flights/search', searchParams);
       if (response.data.errors) {
         throw new Error(response.data.errors[0].detail);
       }

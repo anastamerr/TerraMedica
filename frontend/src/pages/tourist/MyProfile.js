@@ -55,7 +55,7 @@ const RedeemPoints = ({ loyaltyPoints, onRedeem, onUpdate }) => {
       const user = JSON.parse(userStr);
 
       const response = await axios.post(
-        `http://localhost:5000/api/tourist/loyalty/redeem/${user.id}`,
+        `https://terramedica-backend-306ad1b57632.herokuapp.com/api/tourist/loyalty/redeem/${user.id}`,
         { pointsToRedeem: points },
         {
           headers: {
@@ -88,7 +88,7 @@ const RedeemPoints = ({ loyaltyPoints, onRedeem, onUpdate }) => {
   const fetchUpdatedStatus = async (userId, token) => {
     try {
       const response = await axios.get(
-        `http://localhost:5000/api/tourist/loyalty/${userId}`,
+        `https://terramedica-backend-306ad1b57632.herokuapp.com/api/tourist/loyalty/${userId}`,
         {
           headers: {
             Authorization: `Bearer ${token}`,
@@ -155,7 +155,7 @@ const MyProfile = () => {
   const fetchPreferenceTags = async (token) => {
     try {
       const response = await axios.get(
-        "http://localhost:5000/api/preference-tags",
+        "https://terramedica-backend-306ad1b57632.herokuapp.com/api/preference-tags",
         {
           headers: {
             Authorization: `Bearer ${token}`,
@@ -188,7 +188,7 @@ const MyProfile = () => {
       }
 
       const checkResponse = await axios.get(
-        `http://localhost:5000/api/tourist/check-deletion/${user.id}`,
+        `https://terramedica-backend-306ad1b57632.herokuapp.com/api/tourist/check-deletion/${user.id}`,
         {
           headers: {
             Authorization: `Bearer ${localStorage.getItem("token")}`,
@@ -203,7 +203,7 @@ const MyProfile = () => {
       }
 
       const deleteResponse = await axios.delete(
-        `http://localhost:5000/api/tourist/delete/${user.id}`,
+        `https://terramedica-backend-306ad1b57632.herokuapp.com/api/tourist/delete/${user.id}`,
         {
           headers: {
             Authorization: `Bearer ${localStorage.getItem("token")}`,
@@ -247,7 +247,7 @@ const MyProfile = () => {
       const user = JSON.parse(userStr);
 
       const response = await axios.post(
-        `http://localhost:5000/api/tourist/loyalty/redeem/${user.id}`,
+        `https://terramedica-backend-306ad1b57632.herokuapp.com/api/tourist/loyalty/redeem/${user.id}`,
         { pointsToRedeem: points },
         {
           headers: {
@@ -298,7 +298,7 @@ const MyProfile = () => {
 
         // First check if deletion is possible
         const checkResponse = await axios.get(
-          `http://localhost:5000/api/tourist/check-deletion/${user.id}`,
+          `https://terramedica-backend-306ad1b57632.herokuapp.com/api/tourist/check-deletion/${user.id}`,
           {
             headers: {
               Authorization: `Bearer ${localStorage.getItem("token")}`,
@@ -314,7 +314,7 @@ const MyProfile = () => {
 
         // If checks pass, proceed with deletion
         const deleteResponse = await axios.delete(
-          `http://localhost:5000/api/tourist/delete/${user.id}`,
+          `https://terramedica-backend-306ad1b57632.herokuapp.com/api/tourist/delete/${user.id}`,
           {
             headers: {
               Authorization: `Bearer ${localStorage.getItem("token")}`,
@@ -404,7 +404,7 @@ const MyProfile = () => {
       if (!user || !token) return;
 
       const response = await axios.get(
-        `http://localhost:5000/api/tourist/loyalty/${user.id}`,
+        `https://terramedica-backend-306ad1b57632.herokuapp.com/api/tourist/loyalty/${user.id}`,
         {
           headers: {
             Authorization: `Bearer ${token}`,
@@ -459,7 +459,7 @@ const MyProfile = () => {
   const fetchProfile = async () => {
     try {
       const response = await axios.get(
-        `http://localhost:5000/api/tourist/profile/${user.username}`,
+        `https://terramedica-backend-306ad1b57632.herokuapp.com/api/tourist/profile/${user.username}`,
         {
           headers: {
             Authorization: `Bearer ${token}`,
@@ -500,7 +500,7 @@ const MyProfile = () => {
 
     try {
       const response = await axios.put(
-        `http://localhost:5000/api/tourist/profile/${user.username}`,
+        `https://terramedica-backend-306ad1b57632.herokuapp.com/api/tourist/profile/${user.username}`,
         {
           email: profile?.email,
           mobileNumber: profile?.mobileNumber,

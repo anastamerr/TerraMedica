@@ -26,7 +26,7 @@ const PromoCodeManager = () => {
 
   const fetchPromoCodes = async () => {
     try {
-      const response = await axios.get("http://localhost:5000/api/admin/promo-codes", {
+      const response = await axios.get("https://terramedica-backend-306ad1b57632.herokuapp.com/api/admin/promo-codes", {
         headers: { Authorization: `Bearer ${token}` },
       });
       setPromoCodes(response.data);
@@ -77,7 +77,7 @@ const PromoCodeManager = () => {
       if (editMode) {
         // Update existing promo code
         await axios.put(
-          `http://localhost:5000/api/admin/promo-codes/${promoCode._id}`,
+          `https://terramedica-backend-306ad1b57632.herokuapp.com/api/admin/promo-codes/${promoCode._id}`,
           promoData,
           {
             headers: { Authorization: `Bearer ${token}` },
@@ -87,7 +87,7 @@ const PromoCodeManager = () => {
       } else {
         // Create new promo code
         await axios.post(
-          "http://localhost:5000/api/admin/promo-codes",
+          "https://terramedica-backend-306ad1b57632.herokuapp.com/api/admin/promo-codes",
           promoData,
           {
             headers: { Authorization: `Bearer ${token}` },
@@ -105,7 +105,7 @@ const PromoCodeManager = () => {
 
   const handleDelete = async (id) => {
     try {
-      await axios.delete(`http://localhost:5000/api/admin/promo-codes/${id}`, {
+      await axios.delete(`https://terramedica-backend-306ad1b57632.herokuapp.com/api/admin/promo-codes/${id}`, {
         headers: { Authorization: `Bearer ${token}` },
       });
       setSuccess("Promo code deleted successfully!");

@@ -15,7 +15,7 @@ const ActivityForm = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const res = await axios.post('http://localhost:5000/activities', formData);
+      const res = await axios.post('https://terramedica-backend-306ad1b57632.herokuapp.com/activities', formData);
       console.log('Activity Created:', res.data);
       // Refresh the page or update state if necessary
     } catch (error) {
@@ -64,7 +64,7 @@ const ActivityForm = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const res = await axios.post('http://localhost:5000/activities', formData);
+      const res = await axios.post('https://terramedica-backend-306ad1b57632.herokuapp.com/activities', formData);
       console.log('Activity Created:', res.data);
       // Refresh the page or update state if necessary
     } catch (error) {

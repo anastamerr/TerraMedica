@@ -33,7 +33,7 @@ import PaymentSelection from "../../components/PaymentSelection";
 import StripeWrapper from "../../components/StripeWrapper";
 import AddressSelector from "../tourist/AddressSelector";
 
-const API_URL = "http://localhost:5000/api";
+const API_URL = "https://terramedica-backend-306ad1b57632.herokuapp.com/api";
 
 function ProductTouristPage() {
   // Existing states

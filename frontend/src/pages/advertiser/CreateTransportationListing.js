@@ -232,7 +232,7 @@ const CreateTransportationListing = () => {
       const decoded = jwtDecode(token);
 
       const response = await axios.post(
-        "http://localhost:5000/api/transportation",
+        "https://terramedica-backend-306ad1b57632.herokuapp.com/api/transportation",
         {
           ...formData,
           advertiserId: decoded._id,

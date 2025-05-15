@@ -8,7 +8,7 @@ const ActivityList = () => {
   useEffect(() => {
     const fetchActivities = async () => {
       try {
-        const res = await axios.get('http://localhost:5000/activities');
+        const res = await axios.get('https://terramedica-backend-306ad1b57632.herokuapp.com/activities');
         setActivities(res.data);
       } catch (error) {
         console.error('Error fetching activities:', error);
@@ -20,7 +20,7 @@ const ActivityList = () => {
 
   const handleDelete = async (id) => {
     try {
-      await axios.delete(`http://localhost:5000/activities/${id}`);
+      await axios.delete(`https://terramedica-backend-306ad1b57632.herokuapp.com/activities/${id}`);
       setActivities(activities.filter(activity => activity._id !== id));
     } catch (error) {
       console.error('Error deleting activity:', error);
@@ -54,7 +54,7 @@ const ActivityList = () => {
   useEffect(() => {
     const fetchActivities = async () => {
       try {
-        const res = await axios.get('http://localhost:5000/activities');
+        const res = await axios.get('https://terramedica-backend-306ad1b57632.herokuapp.com/activities');
         setActivities(res.data);
       } catch (error) {
         console.error('Error fetching activities:', error);
@@ -66,7 +66,7 @@ const ActivityList = () => {
 
   const handleDelete = async (id) => {
     try {
-      await axios.delete(`http://localhost:5000/activities/${id}`);
+      await axios.delete(`https://terramedica-backend-306ad1b57632.herokuapp.com/activities/${id}`);
       setActivities(activities.filter(activity => activity._id !== id));
     } catch (error) {
       console.error('Error deleting activity:', error);

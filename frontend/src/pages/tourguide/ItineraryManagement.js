@@ -97,7 +97,7 @@ const ItineraryManagement = () => {
   const fetchItineraries = async () => {
     try {
       const response = await axios.get(
-        "http://localhost:5000/api/itineraries",
+        "https://terramedica-backend-306ad1b57632.herokuapp.com/api/itineraries",
         getAuthConfig()
       );
 
@@ -114,7 +114,7 @@ const ItineraryManagement = () => {
   const fetchPreferenceTags = async () => {
     try {
       const response = await axios.get(
-        "http://localhost:5000/api/preference-tags",
+        "https://terramedica-backend-306ad1b57632.herokuapp.com/api/preference-tags",
         getAuthConfig()
       );
       setPreferenceTags(response.data);
@@ -191,14 +191,14 @@ const ItineraryManagement = () => {
       if (currentItinerary) {
         // For updates, we don't need to wrap in itineraryData
         await axios.put(
-          `http://localhost:5000/api/itineraries/${currentItinerary._id}`,
+          `https://terramedica-backend-306ad1b57632.herokuapp.com/api/itineraries/${currentItinerary._id}`,
           formData, // Send formData directly for updates
           config
         );
       } else {
         // For creation, we need both itineraryData and tourGuideId
         await axios.post(
-          "http://localhost:5000/api/itineraries",
+          "https://terramedica-backend-306ad1b57632.herokuapp.com/api/itineraries",
           payload,
           config
         );
@@ -233,7 +233,7 @@ const ItineraryManagement = () => {
     if (window.confirm("Are you sure you want to delete this itinerary?")) {
       try {
         await axios.delete(
-          `http://localhost:5000/api/itineraries/${id}`,
+          `https://terramedica-backend-306ad1b57632.herokuapp.com/api/itineraries/${id}`,
           getAuthConfig()
         );
         fetchItineraries();

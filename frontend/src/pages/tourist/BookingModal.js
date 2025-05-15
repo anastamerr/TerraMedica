@@ -73,12 +73,12 @@ const BookingModal = memo(({
 
     try {
       // First verify price
-      const priceVerification = await axios.post('http://localhost:5000/api/flights/verify-price', {
+      const priceVerification = await axios.post('https://terramedica-backend-306ad1b57632.herokuapp.com/api/flights/verify-price', {
         flightOffers: flight
       });
 
       // Then create booking
-      const bookingResponse = await axios.post('http://localhost:5000/api/flights/book', {
+      const bookingResponse = await axios.post('https://terramedica-backend-306ad1b57632.herokuapp.com/api/flights/book', {
         flightOffer: flight,
         travelers: bookingData.travelers
       });

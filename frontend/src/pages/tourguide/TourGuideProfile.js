@@ -59,7 +59,7 @@ const TourGuideProfile = () => {
       }
 
       const response = await axios.get(
-        `http://localhost:5000/api/tourguide/profile/${user.username}`,
+        `https://terramedica-backend-306ad1b57632.herokuapp.com/api/tourguide/profile/${user.username}`,
         {
           headers: {
             Authorization: `Bearer ${token}`,
@@ -137,7 +137,7 @@ const TourGuideProfile = () => {
       const token = localStorage.getItem('token');
 
       const response = await axios.post(
-        'http://localhost:5000/api/tourguide/upload/profilePicture',
+        'https://terramedica-backend-306ad1b57632.herokuapp.com/api/tourguide/upload/profilePicture',
         formData,
         {
           headers: {
@@ -170,7 +170,7 @@ const TourGuideProfile = () => {
           <div className="position-relative mb-3">
             {(previewUrl || profile?.profilePicture?.path) ? (
               <Image
-                src={previewUrl || `http://localhost:5000/${profile?.profilePicture?.path}`}
+                src={previewUrl || `https://terramedica-backend-306ad1b57632.herokuapp.com/${profile?.profilePicture?.path}`}
                 alt="Profile"
                 roundedCircle
                 style={{ width: '150px', height: '150px', objectFit: 'cover' }}
@@ -270,7 +270,7 @@ const TourGuideProfile = () => {
       const user = JSON.parse(localStorage.getItem('user'));
 
       const response = await axios.put(
-        `http://localhost:5000/api/tourguide/profile/${user.username}`,
+        `https://terramedica-backend-306ad1b57632.herokuapp.com/api/tourguide/profile/${user.username}`,
         {
           email: profile.email,
           mobileNumber: profile.mobileNumber,
@@ -305,7 +305,7 @@ const TourGuideProfile = () => {
     try {
       const token = localStorage.getItem('token');
       const response = await axios.post(
-        `http://localhost:5000/api/tourguide/upload/${type}`,
+        `https://terramedica-backend-306ad1b57632.herokuapp.com/api/tourguide/upload/${type}`,
         formData,
         {
           headers: {
@@ -336,7 +336,7 @@ const TourGuideProfile = () => {
       const user = JSON.parse(localStorage.getItem('user'));
 
       const response = await axios.delete(
-        `http://localhost:5000/api/tourguide/delete/${user.id}`,
+        `https://terramedica-backend-306ad1b57632.herokuapp.com/api/tourguide/delete/${user.id}`,
         {
           headers: {
             Authorization: `Bearer ${token}`,
@@ -449,7 +449,7 @@ const TourGuideProfile = () => {
                         <div className="position-relative mb-3">
                           {(previewUrl || profile?.profilePicture?.path) ? (
                             <Image
-                              src={previewUrl || `http://localhost:5000/${profile?.profilePicture?.path}`}
+                              src={previewUrl || `https://terramedica-backend-306ad1b57632.herokuapp.com/${profile?.profilePicture?.path}`}
                               alt="Profile"
                               roundedCircle
                               style={{ width: '150px', height: '150px', objectFit: 'cover' }}

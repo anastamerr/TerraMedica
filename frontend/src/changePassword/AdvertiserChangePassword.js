@@ -80,7 +80,7 @@ const AdvertiserChangePassword = () => {
       }
 
       const response = await axios.put(
-        "http://localhost:5000/api/advertiser/change-password",
+        "https://terramedica-backend-306ad1b57632.herokuapp.com/api/advertiser/change-password",
         {
           currentPassword: formData.currentPassword,
           newPassword: formData.newPassword,

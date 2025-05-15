@@ -69,7 +69,7 @@ const ActivityList = () => {
   const fetchActivities = async () => {
     try {
       setLoading(true);
-      const response = await axios.get('http://localhost:5000/api/activities');
+      const response = await axios.get('https://terramedica-backend-306ad1b57632.herokuapp.com/api/activities');
       setActivities(response.data);
       setError(null);
     } catch (error) {
@@ -92,7 +92,7 @@ const ActivityList = () => {
 
   const confirmDelete = async () => {
     try {
-      await axios.delete(`http://localhost:5000/api/activities/${selectedActivity._id}`);
+      await axios.delete(`https://terramedica-backend-306ad1b57632.herokuapp.com/api/activities/${selectedActivity._id}`);
       setActivities((prevActivities) => 
         prevActivities.filter((activity) => activity._id !== selectedActivity._id)
       );
@@ -114,7 +114,7 @@ const ActivityList = () => {
   const handleSaveChanges = async () => {
     try {
       const response = await axios.put(
-        `http://localhost:5000/api/activities/${editingActivity._id}`,
+        `https://terramedica-backend-306ad1b57632.herokuapp.com/api/activities/${editingActivity._id}`,
         editingActivity
       );
       setActivities((prevActivities) =>

@@ -48,7 +48,7 @@ const UserDisplay = () => {
 
     try {
       const response = await axios.get(
-        `http://localhost:5000/api/seller/profile/${user.username}`,
+        `https://terramedica-backend-306ad1b57632.herokuapp.com/api/seller/profile/${user.username}`,
         {
           headers: {
             Authorization: `Bearer ${token}`,
@@ -72,7 +72,7 @@ const UserDisplay = () => {
 
     try {
       const response = await axios.put(
-        `http://localhost:5000/api/seller/profile/${profile.id}`,
+        `https://terramedica-backend-306ad1b57632.herokuapp.com/api/seller/profile/${profile.id}`,
         {
           username: profile.username,
           email: profile.email,
@@ -101,7 +101,7 @@ const UserDisplay = () => {
   const handleDeleteAccount = async () => {
     try {
       await axios.delete(
-        `http://localhost:5000/api/seller/profile/${profile.id}`,
+        `https://terramedica-backend-306ad1b57632.herokuapp.com/api/seller/profile/${profile.id}`,
         {
           headers: {
             Authorization: `Bearer ${token}`,

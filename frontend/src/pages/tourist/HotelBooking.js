@@ -77,7 +77,7 @@ const HotelBooking = () => {
 
       try {
         const response = await axios.post(
-          "http://localhost:5000/api/hotels/search",
+          "https://terramedica-backend-306ad1b57632.herokuapp.com/api/hotels/search",
           searchParams
         );
 

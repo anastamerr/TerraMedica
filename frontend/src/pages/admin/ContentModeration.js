@@ -24,8 +24,8 @@ const ContentModeration = () => {
   const fetchContent = async () => {
     try {
       const [activitiesRes, itinerariesRes] = await Promise.all([
-        axios.get("http://localhost:5000/api/activities"),
-        axios.get("http://localhost:5000/api/itineraries"),
+        axios.get("https://terramedica-backend-306ad1b57632.herokuapp.com/api/activities"),
+        axios.get("https://terramedica-backend-306ad1b57632.herokuapp.com/api/itineraries"),
       ]);
 
       setContent({
@@ -41,7 +41,7 @@ const ContentModeration = () => {
 
   const handleFlag = async (type, id, currentStatus) => {
     try {
-      await axios.patch(`http://localhost:5000/api/${type}/${id}/flag`, {
+      await axios.patch(`https://terramedica-backend-306ad1b57632.herokuapp.com/api/${type}/${id}/flag`, {
         flagged: !currentStatus,
       });
 

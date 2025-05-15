@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 // Base URL for your backend API
-const API_URL = 'http://localhost:5000/api';
+const API_URL = 'https://terramedica-backend-306ad1b57632.herokuapp.com/api';
 
 // Helper function to handle API requests
 const handleApiRequest = async (request) => {

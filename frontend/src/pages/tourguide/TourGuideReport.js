@@ -28,7 +28,7 @@ const TourGuideReport = () => {
         const guideId = decodedToken._id;
         if (!guideId) throw new Error("Invalid token. Unable to identify user.");
 
-        const url = `http://localhost:5000/api/tourguide/${guideId}/get-report`;
+        const url = `https://terramedica-backend-306ad1b57632.herokuapp.com/api/tourguide/${guideId}/get-report`;
 
         const response = await axios.get(url);
         setReport(response.data.data);

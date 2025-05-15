@@ -67,7 +67,7 @@ const HotelBookings = () => {
 
         try {
             const response = await axios.get(
-                `http://localhost:5000/api/hotels/bookings/${userId}`,
+                `https://terramedica-backend-306ad1b57632.herokuapp.com/api/hotels/bookings/${userId}`,
                 {
                     headers: {
                         Authorization: `Bearer ${localStorage.getItem("token")}`,

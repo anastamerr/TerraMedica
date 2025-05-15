@@ -34,7 +34,7 @@ const AdvertiserSalesReport = () => {
       const advertiserId = decoded._id;
 
       const activitiesResponse = await axios.get(
-        `http://localhost:5000/api/advertiser/activities/my`,
+        `https://terramedica-backend-306ad1b57632.herokuapp.com/api/advertiser/activities/my`,
         { headers: { Authorization: `Bearer ${token}` } }
       );
 
@@ -42,7 +42,7 @@ const AdvertiserSalesReport = () => {
       const allBookings = [];
       for (const activityId of activityIds) {
         const bookingsResponse = await axios.get(
-          `http://localhost:5000/api/bookings/item/Activity/${activityId}`,
+          `https://terramedica-backend-306ad1b57632.herokuapp.com/api/bookings/item/Activity/${activityId}`,
           { headers: { Authorization: `Bearer ${token}` } }
         );
         allBookings.push(

@@ -3,7 +3,7 @@ import { Form, Alert, Spinner } from "react-bootstrap";
 import { FaMapMarkerAlt } from "react-icons/fa";
 import axios from "axios";
 
-const API_URL = "http://localhost:5000/api";
+const API_URL = "https://terramedica-backend-306ad1b57632.herokuapp.com/api";
 
 const AddressSelector = ({ onSelect, selectedAddress }) => {
   const [addresses, setAddresses] = useState([]);

@@ -29,7 +29,7 @@ const CreateComplaint = () => {
       const createdBy = decodedToken._id;
 
       const response = await axios.post(
-        "http://localhost:5000/api/complaints",
+        "https://terramedica-backend-306ad1b57632.herokuapp.com/api/complaints",
         {
           title,
           problem,

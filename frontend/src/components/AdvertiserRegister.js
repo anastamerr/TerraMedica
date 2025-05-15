@@ -31,7 +31,7 @@ const AdvertiserRegistration = () => {
 
     try {
       // Removed 'response' since it's not being used
-      await axios.post('http://localhost:5000/api/advertiser/register', formData);
+      await axios.post('https://terramedica-backend-306ad1b57632.herokuapp.com/api/advertiser/register', formData);
       setMessage({ type: 'success', text: 'Registration successful!' });
     } catch (error) {
       setMessage({

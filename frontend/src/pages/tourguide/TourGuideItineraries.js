@@ -58,7 +58,7 @@ function TourGuideItineraries() {
       
       // Updated endpoint to match the new route
       const response = await axios.get(
-        "http://localhost:5000/api/tourguide/my-itineraries",
+        "https://terramedica-backend-306ad1b57632.herokuapp.com/api/tourguide/my-itineraries",
         {
           headers: {
             Authorization: `Bearer ${token}`,

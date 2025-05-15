@@ -34,7 +34,7 @@ const FilteredActivities = () => {
 
   const fetchActivities = async () => {
     try {
-      const response = await axios.get("http://localhost:5000/api/activities");
+      const response = await axios.get("https://terramedica-backend-306ad1b57632.herokuapp.com/api/activities");
       setActivities(response.data);
       setFilteredActivities(response.data);
     } catch (error) {
@@ -45,7 +45,7 @@ const FilteredActivities = () => {
   const fetchCategories = async () => {
     try {
       const response = await axios.get(
-        "http://localhost:5000/api/activities/category"
+        "https://terramedica-backend-306ad1b57632.herokuapp.com/api/activities/category"
       );
       setCategories(response.data);
     } catch (error) {

@@ -13,7 +13,7 @@ const FilterHistoricalPlaces = () => {
   useEffect(() => {
     const fetchTags = async () => {
       try {
-        const response = await axios.get('http://localhost:5000/api/tags');
+        const response = await axios.get('https://terramedica-backend-306ad1b57632.herokuapp.com/api/tags');
         console.log('Fetched tags:', response.data);
         setTags(response.data);
       } catch (error) {
@@ -47,7 +47,7 @@ const FilterHistoricalPlaces = () => {
       const query = selectedTags.join(',');
       console.log('Sending query with tags:', query);
       
-      const response = await axios.get(`http://localhost:5000/api/historicalplace/filter-by-tags`, {
+      const response = await axios.get(`https://terramedica-backend-306ad1b57632.herokuapp.com/api/historicalplace/filter-by-tags`, {
         params: { tags: query }
       });
 

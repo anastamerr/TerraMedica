@@ -36,9 +36,9 @@ const AdminVerificationDashboard = () => {
     
     try {
       const [sellersRes, advertisersRes, tourGuidesRes] = await Promise.all([
-        axios.get('http://localhost:5000/api/admin/unverified-sellers', config),
-        axios.get('http://localhost:5000/api/admin/unverified-advertisers', config),
-        axios.get('http://localhost:5000/api/admin/unverified-tourguides', config)
+        axios.get('https://terramedica-backend-306ad1b57632.herokuapp.com/api/admin/unverified-sellers', config),
+        axios.get('https://terramedica-backend-306ad1b57632.herokuapp.com/api/admin/unverified-advertisers', config),
+        axios.get('https://terramedica-backend-306ad1b57632.herokuapp.com/api/admin/unverified-tourguides', config)
       ]);
 
       setSellers(sellersRes.data);
@@ -64,7 +64,7 @@ const AdminVerificationDashboard = () => {
     const documentPath = user[documentType]?.path; // Retrieve the path from the user object
   
     // Assuming your backend serves static files at /uploads
-    const documentUrl = `http://localhost:5000/${documentPath.replace(/\\/g, '/')}`; // Replace backslashes for URL format
+    const documentUrl = `https://terramedica-backend-306ad1b57632.herokuapp.com/${documentPath.replace(/\\/g, '/')}`; // Replace backslashes for URL format
     
     setSelectedDocument({
       type: documentType,
@@ -89,7 +89,7 @@ const AdminVerificationDashboard = () => {
         throw new Error('Invalid user type');
       }
   
-      const endpoint = `http://localhost:5000/api/admin/verify-${endpointType}/${userId}`;
+      const endpoint = `https://terramedica-backend-306ad1b57632.herokuapp.com/api/admin/verify-${endpointType}/${userId}`;
       await axios.put(endpoint, { isApproved }, config);
       
       setSuccess(`${userType.charAt(0).toUpperCase() + userType.slice(1)} ${isApproved ? 'approved' : 'rejected'} successfully`);

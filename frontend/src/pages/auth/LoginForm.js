@@ -26,7 +26,7 @@ const LoginForm = ({ selectedRole, setLoading, setError, setIsAuthenticated }) =
 
     try {
       const response = await axios.post(
-        `http://localhost:5000/api/${selectedRole}/login`,
+        `https://terramedica-backend-306ad1b57632.herokuapp.com/api/${selectedRole}/login`,
         loginData
       );
 

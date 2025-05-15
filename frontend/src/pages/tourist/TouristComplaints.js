@@ -23,7 +23,7 @@ const TouristComplaints = () => {
         const decodedToken = jwtDecode(token);
         const userId = decodedToken._id;
         const response = await axios.get(
-          `http://localhost:5000/api/complaints/user/${userId}`,
+          `https://terramedica-backend-306ad1b57632.herokuapp.com/api/complaints/user/${userId}`,
           {
             headers: {
               Authorization: `Bearer ${token}`

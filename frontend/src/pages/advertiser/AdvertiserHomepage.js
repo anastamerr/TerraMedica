@@ -138,7 +138,7 @@ const AdvertiserHomepage = () => {
         const decoded = jwtDecode(token);
 
         const response = await axios.get(
-          `http://localhost:5000/api/advertiser/profile/${decoded.username}`,
+          `https://terramedica-backend-306ad1b57632.herokuapp.com/api/advertiser/profile/${decoded.username}`,
           {
             headers: {
               Authorization: `Bearer ${token}`,
@@ -164,7 +164,7 @@ const AdvertiserHomepage = () => {
       if (!token) throw new Error("No token found");
 
       await axios.put(
-        `http://localhost:5000/api/advertiser/profile/${advertiserInfo.username}`,
+        `https://terramedica-backend-306ad1b57632.herokuapp.com/api/advertiser/profile/${advertiserInfo.username}`,
         { TandC: true },
         {
           headers: {
@@ -197,7 +197,7 @@ const AdvertiserHomepage = () => {
         throw new Error("User ID not found");
       }
 
-      await axios.delete(`http://localhost:5000/api/advertiser/${userId}`, {
+      await axios.delete(`https://terramedica-backend-306ad1b57632.herokuapp.com/api/advertiser/${userId}`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },

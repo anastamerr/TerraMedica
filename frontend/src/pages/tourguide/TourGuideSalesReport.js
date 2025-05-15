@@ -33,7 +33,7 @@ const TourGuideSalesReport = () => {
       const guideId = decoded._id;
 
       const response = await axios.get(
-        `http://localhost:5000/api/bookings/guide/${guideId}/sales`,
+        `https://terramedica-backend-306ad1b57632.herokuapp.com/api/bookings/guide/${guideId}/sales`,
         { headers: { Authorization: `Bearer ${token}` } }
       );
 

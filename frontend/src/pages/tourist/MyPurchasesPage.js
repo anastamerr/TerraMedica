@@ -26,7 +26,7 @@ import axios from "axios";
 import { jwtDecode } from "jwt-decode";
 import { useNavigate } from "react-router-dom";
 
-const API_URL = "http://localhost:5000/api";
+const API_URL = "https://terramedica-backend-306ad1b57632.herokuapp.com/api";
 
 export default function MyPurchasesPage() {
   const navigate = useNavigate();

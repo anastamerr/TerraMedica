@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import AdminNavbar from "./AdminNavbar";
 
-const API_URL = "http://localhost:5000/api/activities/category";
+const API_URL = "https://terramedica-backend-306ad1b57632.herokuapp.com/api/activities/category";
 
 const ActivityCategoryManagement = () => {
   const [categories, setCategories] = useState([]);

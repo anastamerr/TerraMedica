@@ -49,7 +49,7 @@ const ManageTransportations = () => {
       }
 
       const response = await axios.get(
-        "http://localhost:5000/api/transportation/advertiser/listings",
+        "https://terramedica-backend-306ad1b57632.herokuapp.com/api/transportation/advertiser/listings",
         {
           headers: { Authorization: `Bearer ${token}` },
         }
@@ -78,7 +78,7 @@ const ManageTransportations = () => {
       }
 
       await axios.delete(
-        `http://localhost:5000/api/transportation/${selectedTransportation._id}`,
+        `https://terramedica-backend-306ad1b57632.herokuapp.com/api/transportation/${selectedTransportation._id}`,
         {
           headers: { Authorization: `Bearer ${token}` },
         }

@@ -14,7 +14,7 @@ import {
 } from "react-bootstrap";
 import AdminNavbar from "./AdminNavbar";
 
-const API_URL = "http://localhost:5000/api/complaints";
+const API_URL = "https://terramedica-backend-306ad1b57632.herokuapp.com/api/complaints";
 
 const Complaints = () => {
   const [complaints, setComplaints] = useState([]);

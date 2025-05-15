@@ -73,7 +73,7 @@ const NotificationsPage = () => {
   
       console.log('Fetching notifications for:', userInfo); // Debug log
   
-      const response = await axios.get(`http://localhost:5000/api/notifications`, {
+      const response = await axios.get(`https://terramedica-backend-306ad1b57632.herokuapp.com/api/notifications`, {
         params: {
           userId: userInfo.userId,
           userType: userInfo.userType,
@@ -105,7 +105,7 @@ const NotificationsPage = () => {
   
       console.log('Getting unread count for:', userInfo); // Debug log
   
-      const response = await axios.get(`http://localhost:5000/api/notifications/unread/count`, {
+      const response = await axios.get(`https://terramedica-backend-306ad1b57632.herokuapp.com/api/notifications/unread/count`, {
         params: {
           userId: userInfo.userId,
           userType: userInfo.userType
@@ -122,7 +122,7 @@ const NotificationsPage = () => {
     try {
       const userInfo = getUserInfo();
       await axios.patch(
-        `http://localhost:5000/api/notifications/${notificationId}/read`,
+        `https://terramedica-backend-306ad1b57632.herokuapp.com/api/notifications/${notificationId}/read`,
         {},
         {
           params: { userId: userInfo.userId }
@@ -142,7 +142,7 @@ const NotificationsPage = () => {
     try {
       const userInfo = getUserInfo();
       await axios.patch(
-        'http://localhost:5000/api/notifications/mark-all-read',
+        'https://terramedica-backend-306ad1b57632.herokuapp.com/api/notifications/mark-all-read',
         {},
         {
           params: {
@@ -161,7 +161,7 @@ const NotificationsPage = () => {
   const deleteNotification = async (notificationId) => {
     try {
       const userInfo = getUserInfo();
-      await axios.delete(`http://localhost:5000/api/notifications/${notificationId}`, {
+      await axios.delete(`https://terramedica-backend-306ad1b57632.herokuapp.com/api/notifications/${notificationId}`, {
         params: { userId: userInfo.userId }
       });
       setNotifications(notifications.filter(notif => notif._id !== notificationId));

@@ -27,7 +27,7 @@ const TouristReport = () => {
           throw new Error("Invalid token. Advertiser ID missing.");
         }
 
-        let url = `http://localhost:5000/api/advertiser/${advertiserId}/tourist-report`;
+        let url = `https://terramedica-backend-306ad1b57632.herokuapp.com/api/advertiser/${advertiserId}/tourist-report`;
         if (dateRange === "custom" && customStartDate && customEndDate) {
           url += `?startDate=${customStartDate}&endDate=${customEndDate}`;
         }

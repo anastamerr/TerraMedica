@@ -77,7 +77,7 @@ const AdvertiserProfile = () => {
       const token = localStorage.getItem('token');
       
       const response = await axios.get(
-        `http://localhost:5000/api/advertiser/profile/${user.username}`,
+        `https://terramedica-backend-306ad1b57632.herokuapp.com/api/advertiser/profile/${user.username}`,
         {
           headers: {
             Authorization: `Bearer ${token}`,
@@ -113,7 +113,7 @@ const AdvertiserProfile = () => {
     try {
       const token = localStorage.getItem('token');
       await axios.put(
-        `http://localhost:5000/api/advertiser/profile/${userDetails.username}`,
+        `https://terramedica-backend-306ad1b57632.herokuapp.com/api/advertiser/profile/${userDetails.username}`,
         userDetails,
         {
           headers: {

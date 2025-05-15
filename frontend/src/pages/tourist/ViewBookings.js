@@ -135,7 +135,7 @@ const ViewBookings = () => {
 
     try {
       const response = await axios.get(
-        `http://localhost:5000/api/bookings/user/${userId}`,
+        `https://terramedica-backend-306ad1b57632.herokuapp.com/api/bookings/user/${userId}`,
         {
           headers: {
             Authorization: `Bearer ${localStorage.getItem("token")}`,
@@ -153,7 +153,7 @@ const ViewBookings = () => {
           ) {
             try {
               const updateResponse = await axios.patch(
-                `http://localhost:5000/api/bookings/status/${booking._id}`,
+                `https://terramedica-backend-306ad1b57632.herokuapp.com/api/bookings/status/${booking._id}`,
                 { status: "attended" },
                 {
                   headers: {
@@ -197,7 +197,7 @@ const ViewBookings = () => {
       const refundAmount = getItemPrice(booking);
 
       const cancelResponse = await axios.patch(
-        `http://localhost:5000/api/bookings/cancel/${bookingId}`,
+        `https://terramedica-backend-306ad1b57632.herokuapp.com/api/bookings/cancel/${bookingId}`,
         {},
         {
           headers: {
@@ -209,7 +209,7 @@ const ViewBookings = () => {
       if (cancelResponse.data.success) {
         const userId = getUserId();
         const refundResponse = await axios.post(
-          `http://localhost:5000/api/tourist/wallet/refund/${userId}`,
+          `https://terramedica-backend-306ad1b57632.herokuapp.com/api/tourist/wallet/refund/${userId}`,
           { amount: refundAmount },
           {
             headers: {
@@ -287,7 +287,7 @@ const ViewBookings = () => {
     setSubmittingRating(true);
     try {
       const response = await axios.post(
-        `http://localhost:5000/api/bookings/${selectedBooking._id}/rating`,
+        `https://terramedica-backend-306ad1b57632.herokuapp.com/api/bookings/${selectedBooking._id}/rating`,
         {
           rating,
           review,
@@ -331,7 +331,7 @@ const submitGuideRating = async () => {
   setSubmittingGuideRating(true);
   try {
     const response = await axios.post(
-      `http://localhost:5000/api/tourist/rate-guide/${selectedBooking.guideId}`,
+      `https://terramedica-backend-306ad1b57632.herokuapp.com/api/tourist/rate-guide/${selectedBooking.guideId}`,
       {
         rating: guideRating,
         comment: guideReview

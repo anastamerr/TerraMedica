@@ -2990,7 +2990,7 @@ You can run our complete test suite yourself:
 1. Access our [TerraMedica API Tests Collection](https://www.postman.com/telecoms-saganist-47627496/tripify/collection/jcue42t/tripify-api-tests?action=share&creator=38609348)
 2. Click "Run in Postman" 
 3. Set up your environment variables:
-baseUrl: http://localhost:5000/api
+baseUrl: https://terramedica-backend-306ad1b57632.herokuapp.com/api
 touristToken: [Your JWT token]
 advertiserToken: [Your JWT token]
 governorToken: [Your JWT token]

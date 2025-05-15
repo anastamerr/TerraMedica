@@ -27,7 +27,7 @@ export const addProduct = async (req, res) => {
 
     const imageData = req.files.productImage.map((file) => ({
       filename: file.filename,
-      path: `http://localhost:5000/uploads/${file.filename}`,
+      path: `https://terramedica-backend-306ad1b57632.herokuapp.com/uploads/${file.filename}`,
       mimetype: file.mimetype,
       size: file.size,
       uploadDate: new Date(),

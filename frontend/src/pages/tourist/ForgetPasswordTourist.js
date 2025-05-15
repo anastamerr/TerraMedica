@@ -26,7 +26,7 @@ const ForgetPassword = () => {
     setLoading(true);
     setStatus({ type: '', message: '' });
     try {
-      const response = await fetch('http://localhost:5000/api/Tourist/forgot-password/send-otp', {
+      const response = await fetch('https://terramedica-backend-306ad1b57632.herokuapp.com/api/Tourist/forgot-password/send-otp', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ email })
@@ -48,7 +48,7 @@ const ForgetPassword = () => {
     setLoading(true);
     setStatus({ type: '', message: '' });
     try {
-      const response = await fetch('http://localhost:5000/api/Tourist/forgot-password/verify-otp', {
+      const response = await fetch('https://terramedica-backend-306ad1b57632.herokuapp.com/api/Tourist/forgot-password/verify-otp', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ email, otp })
@@ -70,7 +70,7 @@ const ForgetPassword = () => {
     setLoading(true);
     setStatus({ type: '', message: '' });
     try {
-      const response = await fetch('http://localhost:5000/api/Tourist/forgot-password/reset', {
+      const response = await fetch('https://terramedica-backend-306ad1b57632.herokuapp.com/api/Tourist/forgot-password/reset', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ email, newPassword })

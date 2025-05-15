@@ -54,7 +54,7 @@ const RegisterPage = () => {
 
     try {
       const response = await axios.post(
-        "http://localhost:5000/api/toursimGovernor/register/",
+        "https://terramedica-backend-306ad1b57632.herokuapp.com/api/toursimGovernor/register/",
         formData
       );
       setMessage({ type: "success", text: "Governor registered successfully!" });

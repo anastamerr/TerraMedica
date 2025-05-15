@@ -74,7 +74,7 @@ const BookTransportation = () => {
   const fetchTransportations = async () => {
     try {
       setLoading(true);
-      const response = await axios.get("http://localhost:5000/api/transportation");
+      const response = await axios.get("https://terramedica-backend-306ad1b57632.herokuapp.com/api/transportation");
       setTransportations(response.data);
       setFilteredTransportations(response.data);
     } catch (err) {
@@ -193,7 +193,7 @@ const BookTransportation = () => {
       };
 
       await axios.post(
-        "http://localhost:5000/api/transportation/book",
+        "https://terramedica-backend-306ad1b57632.herokuapp.com/api/transportation/book",
         bookingData,
         {
           headers: { Authorization: `Bearer ${token}` },

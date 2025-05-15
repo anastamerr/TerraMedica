@@ -44,7 +44,7 @@ const SellerSalesReport = () => {
         return;
       }
 
-      let url = `http://localhost:5000/api/products/seller-sales/${user.id}`;
+      let url = `https://terramedica-backend-306ad1b57632.herokuapp.com/api/products/seller-sales/${user.id}`;
 
       if (dateRange === "custom" && customStartDate && customEndDate) {
         url += `?startDate=${customStartDate}&endDate=${customEndDate}`;

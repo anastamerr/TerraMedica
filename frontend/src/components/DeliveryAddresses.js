@@ -47,7 +47,7 @@ const DeliveryAddresses = () => {
   const fetchAddresses = async () => {
     try {
       const token = localStorage.getItem('token');
-      const response = await axios.get('http://localhost:5000/api/tourist/addresses', {
+      const response = await axios.get('https://terramedica-backend-306ad1b57632.herokuapp.com/api/tourist/addresses', {
         headers: { Authorization: `Bearer ${token}` }
       });
 
@@ -67,8 +67,8 @@ const DeliveryAddresses = () => {
     try {
       const token = localStorage.getItem('token');
       const endpoint = editingAddress 
-        ? `http://localhost:5000/api/tourist/address/${editingAddress._id}`
-        : 'http://localhost:5000/api/tourist/address';
+        ? `https://terramedica-backend-306ad1b57632.herokuapp.com/api/tourist/address/${editingAddress._id}`
+        : 'https://terramedica-backend-306ad1b57632.herokuapp.com/api/tourist/address';
       
       const method = editingAddress ? 'put' : 'post';
       
@@ -91,7 +91,7 @@ const DeliveryAddresses = () => {
     if (window.confirm('Are you sure you want to delete this address?')) {
       try {
         const token = localStorage.getItem('token');
-        await axios.delete(`http://localhost:5000/api/tourist/address/${addressId}`, {
+        await axios.delete(`https://terramedica-backend-306ad1b57632.herokuapp.com/api/tourist/address/${addressId}`, {
           headers: { Authorization: `Bearer ${token}` }
         });
         await fetchAddresses();
@@ -107,7 +107,7 @@ const DeliveryAddresses = () => {
     try {
       const token = localStorage.getItem('token');
       await axios.patch(
-        `http://localhost:5000/api/tourist/address/${addressId}/set-default`,
+        `https://terramedica-backend-306ad1b57632.herokuapp.com/api/tourist/address/${addressId}/set-default`,
         {},
         { headers: { Authorization: `Bearer ${token}` }}
       );

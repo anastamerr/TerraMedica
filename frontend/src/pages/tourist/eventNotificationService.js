@@ -5,7 +5,7 @@ export const requestEventNotification = async (eventId, eventType, userId) => {
   try {
     // Create a notification request
     const response = await axios.post(
-      "http://localhost:5000/api/notifications",
+      "https://terramedica-backend-306ad1b57632.herokuapp.com/api/notifications",
       {
         recipients: [
           {

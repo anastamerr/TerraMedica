@@ -17,7 +17,7 @@ const ItineraryComment = ({ itineraryId }) => {
     try {
       const token = localStorage.getItem("token");
       const response = await axios.get(
-        `http://localhost:5000/api/itineraries/${itineraryId}/comments`,
+        `https://terramedica-backend-306ad1b57632.herokuapp.com/api/itineraries/${itineraryId}/comments`,
         {
           headers: { Authorization: `Bearer ${token}` },
         }
@@ -44,7 +44,7 @@ const ItineraryComment = ({ itineraryId }) => {
       }
 
       await axios.post(
-        `http://localhost:5000/api/itineraries/${itineraryId}/comments`,
+        `https://terramedica-backend-306ad1b57632.herokuapp.com/api/itineraries/${itineraryId}/comments`,
         { content: newComment },
         {
           headers: { Authorization: `Bearer ${token}` },

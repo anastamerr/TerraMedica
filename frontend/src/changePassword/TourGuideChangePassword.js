@@ -81,7 +81,7 @@ const TourGuideChangePassword = () => {
       }
 
       const response = await axios.put(
-        "http://localhost:5000/api/tourguide/change-password",
+        "https://terramedica-backend-306ad1b57632.herokuapp.com/api/tourguide/change-password",
         {
           currentPassword: formData.currentPassword,
           newPassword: formData.newPassword,

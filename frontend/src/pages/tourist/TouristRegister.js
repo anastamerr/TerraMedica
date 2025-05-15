@@ -47,7 +47,7 @@ const TouristRegistration = () => {
 
     try {
       const response = await axios.post(
-        "http://localhost:5000/api/tourist/register",
+        "https://terramedica-backend-306ad1b57632.herokuapp.com/api/tourist/register",
         formData
       );
       setMessage({ type: "success", text: response.data.message });

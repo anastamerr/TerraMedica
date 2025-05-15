@@ -190,7 +190,7 @@ const AuthPage = () => {
       // Remove the previous conditional logic and let the backend handle the validation
   
       const response = await axios.post(
-        `http://localhost:5000/api/${endpoint}/login`,
+        `https://terramedica-backend-306ad1b57632.herokuapp.com/api/${endpoint}/login`,
         loginPayload
       );
   
@@ -268,7 +268,7 @@ const AuthPage = () => {
         });
 
         const response = await axios.post(
-          `http://localhost:5000/api/${role.endpoint}/register`,
+          `https://terramedica-backend-306ad1b57632.herokuapp.com/api/${role.endpoint}/register`,
           formDataToSend,
           {
             headers: {
@@ -315,7 +315,7 @@ const AuthPage = () => {
         });
 
         const response = await axios.post(
-          `http://localhost:5000/api/${role.endpoint}/register`,
+          `https://terramedica-backend-306ad1b57632.herokuapp.com/api/${role.endpoint}/register`,
           formDataToSend,
           {
             headers: {
@@ -362,7 +362,7 @@ const AuthPage = () => {
         });
 
         const response = await axios.post(
-          `http://localhost:5000/api/${role.endpoint}/register`,
+          `https://terramedica-backend-306ad1b57632.herokuapp.com/api/${role.endpoint}/register`,
           formDataToSend,
           {
             headers: {
@@ -384,7 +384,7 @@ const AuthPage = () => {
       // Regular registration for other roles
       else {
         const response = await axios.post(
-          `http://localhost:5000/api/${role.endpoint}/register`,
+          `https://terramedica-backend-306ad1b57632.herokuapp.com/api/${role.endpoint}/register`,
           registrationData
         );
 

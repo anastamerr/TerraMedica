@@ -12,7 +12,7 @@ import {
 } from "react-bootstrap";
 import AdminNavbar from "../admin/AdminNavbar";
 
-const API_URL = "http://localhost:5000/api"; // Adjust this to your backend URL
+const API_URL = "https://terramedica-backend-306ad1b57632.herokuapp.com/api"; // Adjust this to your backend URL
 
 function ProductPage() {
   const [products, setProducts] = useState([]);

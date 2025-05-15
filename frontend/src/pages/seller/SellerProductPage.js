@@ -15,7 +15,7 @@ import {
   Badge
 } from "react-bootstrap";
 
-const API_URL = "http://localhost:5000/api";
+const API_URL = "https://terramedica-backend-306ad1b57632.herokuapp.com/api";
 
 function SellerProductPage() {
   const [products, setProducts] = useState([]);

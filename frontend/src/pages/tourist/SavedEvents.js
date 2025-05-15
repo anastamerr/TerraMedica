@@ -15,7 +15,7 @@ const SavedEvents = () => {
   const fetchSavedEvents = async () => {
     try {
       const token = localStorage.getItem('token');
-      const response = await axios.get('http://localhost:5000/api/tourist/saved-events', {
+      const response = await axios.get('https://terramedica-backend-306ad1b57632.herokuapp.com/api/tourist/saved-events', {
         headers: { Authorization: `Bearer ${token}` }
       });
 
@@ -31,7 +31,7 @@ const SavedEvents = () => {
   const removeFromSaved = async (eventId) => {
     try {
       const token = localStorage.getItem('token');
-      const response = await axios.delete(`http://localhost:5000/api/tourist/bookmark/${eventId}`, {
+      const response = await axios.delete(`https://terramedica-backend-306ad1b57632.herokuapp.com/api/tourist/bookmark/${eventId}`, {
         headers: { Authorization: `Bearer ${token}` }
       });
 

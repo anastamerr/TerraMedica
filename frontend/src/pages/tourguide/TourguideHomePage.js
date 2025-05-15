@@ -42,7 +42,7 @@ const TourguideHomePage = () => {
         }
 
         const response = await axios.get(
-          "http://localhost:5000/api/tourguide/profile",
+          "https://terramedica-backend-306ad1b57632.herokuapp.com/api/tourguide/profile",
           {
             headers: {
               Authorization: `Bearer ${token}`,
@@ -69,7 +69,7 @@ const TourguideHomePage = () => {
       const username = decodedToken.username;
 
       await axios.put(
-        `http://localhost:5000/api/tourguide/profile/${username}`,
+        `https://terramedica-backend-306ad1b57632.herokuapp.com/api/tourguide/profile/${username}`,
         {
           TandC: true,
         },
@@ -162,7 +162,7 @@ const TourguideHomePage = () => {
       }
 
       await axios.delete(
-        `http://localhost:5000/api/tourguide/delete/${userId}`,
+        `https://terramedica-backend-306ad1b57632.herokuapp.com/api/tourguide/delete/${userId}`,
         {
           headers: {
             Authorization: `Bearer ${token}`,
