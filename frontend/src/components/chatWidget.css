@@ -32,8 +32,7 @@
   padding: 8px 12px;
   position: absolute;
   z-index: 1;
-  bottom: 125%;
-  /* Position the tooltip above the icon */
+  bottom: 125%; /* Position the tooltip above the icon */
   left: 50%;
   margin-left: -90px; /* Half of the width */
   opacity: 0;
@@ -186,6 +185,18 @@
   white-space: pre-wrap;
 }
 
+.heka-regular-message p {
+  margin-bottom: 0.75rem;
+}
+
+/* Style for asterisks - make them bold without showing the asterisks */
+.heka-regular-message strong,
+.heka-message-intro strong,
+.heka-message-closing strong {
+  font-weight: 600;
+  color: #1e7b46;
+}
+
 .heka-structured-message {
   display: flex;
   flex-direction: column;
@@ -331,13 +342,9 @@
 }
 
 @keyframes bounce {
-
-  0%,
-  80%,
-  100% {
+  0%, 80%, 100% {
     transform: scale(0);
   }
-
   40% {
     transform: scale(1.0);
   }
