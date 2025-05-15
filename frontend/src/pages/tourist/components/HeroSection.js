@@ -4,65 +4,64 @@ import "react-modal-video/scss/modal-video.scss";
 import bgImage from "../assets/images/bg_5.jpg";
 
 const HeroSection = ({ username }) => {
-   // Check if the user is logged in
-   const isLoggedIn = () => {
-    return !!localStorage.getItem("token");
-  };
-  
-  const [isOpen, setIsOpen] = useState(false);
+    // Check if the user is logged in
+    const isLoggedIn = () => {
+        return !!localStorage.getItem("token");
+    };
 
-  return (
-    <div
-      className="hero-wrap js-fullheight"
-      style={{
-        backgroundImage: `url(${bgImage})`,
-        backgroundSize: "cover",
-        backgroundPosition: "center",
-        backgroundAttachment: "fixed",
-      }}
-    >
-      {/* Overlay to darken the background */}
-      <div className="overlay active"></div>
+    const [isOpen, setIsOpen] = useState(false);
 
-      {/* Welcome Back Message */}
-      {isLoggedIn() && (
+    return (
         <div
-          style={{
-            position: "absolute",
-            top: "90px", // Adjust to align below the navbar
-            right: "170px", // Positioned to the right
-            zIndex: 10,
-            color: "#fff", // White text
-            fontSize: "18px", // Font size
-            fontWeight: "600", // Font weight
-          }}
+            className="hero-wrap js-fullheight"
+            style={{
+                backgroundImage: `url(${bgImage})`,
+                backgroundSize: "cover",
+                backgroundPosition: "center",
+                backgroundAttachment: "fixed",
+            }}
         >
-          <p style={{ margin: 0 }}>
-            Welcome back, <strong>{username}</strong>!
-          </p>
-        </div>
-      )}
+            {/* Overlay to darken the background */}
+            <div className="overlay active"></div>
 
-      {/* Main Container */}
-      <div className="container">
-        <div
-          className="row no-gutters slider-text js-fullheight align-items-center"
-          data-scrollax-parent="true"
-        >
-          {/* Text Section */}
-          <div className="col-md-7 ftco-animate">
-            <div className="slider-text">
-              <span className="subheading">Welcome to Tripify</span>
-              <h1 className="mb-4">Discover Your Favorite Place with Us</h1>
-              <p className="caps">
-                Travel to any corner of the world, without going around in
-                circles
-              </p>
-            </div>
-          </div>
+            {/* Welcome Back Message */}
+            {isLoggedIn() && (
+                <div
+                    style={{
+                        position: "absolute",
+                        top: "90px", // Adjust to align below the navbar
+                        right: "170px", // Positioned to the right
+                        zIndex: 10,
+                        color: "#fff", // White text
+                        fontSize: "18px", // Font size
+                        fontWeight: "600", // Font weight
+                    }}
+                >
+                    <p style={{ margin: 0 }}>
+                        Welcome back, <strong>{username}</strong>!
+                    </p>
+                </div>
+            )}
 
-          {/* Play Button */}
-          <div className="col-md-5 d-flex align-items-center justify-content-end">
+            {/* Main Container */}
+            <div className="container">
+                <div
+                    className="row no-gutters slider-text js-fullheight align-items-center"
+                    data-scrollax-parent="true"
+                >
+                    {/* Text Section */}
+                    <div className="col-md-7 ftco-animate">
+                        <div className="slider-text">
+                            <span className="subheading">Welcome to TerraMedica</span>
+                            <h1 className="mb-4">Discover World-Class Healthcare in Egypt with Us</h1>
+                            <p className="caps">
+                                Get the Best Medical Care in Egypt—No Hassles, No Confusion
+                            </p>
+                        </div>
+                    </div>
+
+                    {/* Play Button */}
+                    {/* <div className="col-md-5 d-flex align-items-center justify-content-end">
             <button
               onClick={() => setIsOpen(true)}
               className="icon-video popup-vimeo d-flex align-items-center justify-content-center"
@@ -81,7 +80,7 @@ const HeroSection = ({ username }) => {
               <span
                 className="fa fa-play"
                 style={{
-                  color: "#f15d30",
+                  color: "#936639",
                   fontSize: "24px",
                 }}
               ></span>
@@ -92,11 +91,11 @@ const HeroSection = ({ username }) => {
               videoId="45830194"
               onClose={() => setIsOpen(false)}
             />
-          </div>
+          </div> */}
+                </div>
+            </div>
         </div>
-      </div>
-    </div>
-  );
+    );
 };
 
 export default HeroSection;
