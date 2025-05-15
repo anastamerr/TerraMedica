@@ -1,8 +1,8 @@
 <p align="center">
   <!-- Local Logo Image -->
   <img 
-    src="assets/tripifyLogo.png" 
-    alt="Tripify Logo" 
+    src="assets/terramedica-logo.png" 
+    alt="TerraMedica Logo" 
     width="400" 
     style="margin-bottom: 20px;" 
   />
@@ -10,14 +10,17 @@
   <!-- Typing SVG -->
   <a href="https://git.io/typing-svg">
     <img 
-      src="https://readme-typing-svg.herokuapp.com?font=Fira+Code&size=40&pause=1000&color=F7F7F7&center=true&vCenter=true&random=false&width=1200&height=100&lines=Welcome+to+Tripify+%F0%9F%98%B1%F0%9F%94%A5" 
-      alt="Welcome to Tripify Typing SVG" 
+      src="https://readme-typing-svg.herokuapp.com?font=Fira+Code&size=40&pause=1000&color=F7F7F7&center=true&vCenter=true&random=false&width=1200&height=100&lines=Welcome+to+TerraMedica+%F0%9F%98%B1%F0%9F%94%A5" 
+      alt="Welcome to TerraMedica Typing SVG" 
     />
   </a>
 </p>
 
+# TerraMedica: Your AI-assisted guide for sustainable medical tourism in Egypt
 
-# Tripify: a Tourism Management System
+## Description
+
+TerraMedica is a comprehensive platform for medical tourism, designed to help users explore the diverse regions of Egypt while prioritizing environmentally friendly (CO₂-conscious) travel and healing. Our platform connects travelers with natural healing practices, eco-friendly accommodations, and authentic Egyptian wellness experiences. Discover therapeutic destinations, traditional medicine, and sustainable travel options that minimize your carbon footprint. Whether you seek natural remedies, climate therapies, or holistic wellness, TerraMedica empowers you to heal and rejuvenate in harmony with Egypt's rich heritage and environment.
 
 ## Table of Contents
 
@@ -37,12 +40,12 @@
 
 ## 🚀 Motivation
 
-Welcome to Tripify! 🌍✨
-Planning trips can often be a daunting task, with numerous details to manage and choices to make. We created Tripify to simplify and streamline this process for travelers. Our goal is to provide users with a one-stop platform to plan, book, and manage their travel itineraries effortlessly.
+Welcome to TerraMedica! 🌍✨
+Planning trips can often be a daunting task, with numerous details to manage and choices to make. We created TerraMedica to simplify and streamline this process for travelers. Our goal is to provide users with a one-stop platform to plan, book, and manage their travel itineraries effortlessly.
 
-Whether you're a seasoned traveler looking for curated experiences or a first-timer seeking guidance, Tripify empowers you with tools and insights to make your journey memorable.
+Whether you're a seasoned traveler looking for curated experiences or a first-timer seeking guidance, TerraMedica empowers you with tools and insights to make your journey memorable.
 
-The motivation behind Tripify stems from a shared passion for travel and a desire to eliminate the frustration often associated with planning trips. By integrating advanced features, automation, and user-friendly design, we aim to inspire people to explore the world with confidence and ease.
+The motivation behind TerraMedica stems from a shared passion for travel and a desire to eliminate the frustration often associated with planning trips. By integrating advanced features, automation, and user-friendly design, we aim to inspire people to explore the world with confidence and ease.
 
 
 ## 👀 Quick Look
@@ -50,14 +53,14 @@ The motivation behind Tripify stems from a shared passion for travel and a desir
 <div align="center">
   <!-- For GitHub-hosted .mp4 video -->
   <video width="600" controls>
-    <source src="assets/tripify-preview.mp4" type="video/mp4">
+    <source src="assets/TerraMedica-preview.mp4" type="video/mp4">
     Your browser does not support the video tag.
   </video>
   </div>
 
 
 
-Experience Tripify in action! This quick preview showcases our key features:
+Experience TerraMedica in action! This quick preview showcases our key features:
 - User-friendly registration and authentication
 - Seamless booking experience
 - Interactive itinerary planning
@@ -719,30 +722,30 @@ export const checkAndSendBirthdayPromos = async () => {
 
 - Make sure you have [Node](https://nodejs.org/en) and [Git](https://git-scm.com/) installed
 
-- Make a new folder for the sub system of Tripify
+- Make a new folder for the sub system of TerraMedica
 
 ```bash
-mkdir Tripify
-cd Tripify
+mkdir TerraMedica
+cd TerraMedica
 ```
 
 - Clone this repo 
 
 ```bash
-git clone https://github.com/Advanced-computer-lab-2024/Tripify
+git clone https://github.com/anastamerr/TerraMedica
 ```
 
 - Install dependencies for frontend
 
 ```bash
-cd Tripify/frontend
+cd TerraMedica/frontend
 npm install
 ```
 
 - Install dependencies for backend
 
 ```bash
-cd Tripify/backend
+cd TerraMedica/backend
 npm install
 ```
 
@@ -2977,7 +2980,7 @@ We use `Postman` to manually test all our api references by making sure the resp
 ### Test Our API
 You can run our complete test suite yourself:
 
-1. Access our [Tripify API Tests Collection](https://www.postman.com/telecoms-saganist-47627496/tripify/collection/jcue42t/tripify-api-tests?action=share&creator=38609348)
+1. Access our [TerraMedica API Tests Collection](https://www.postman.com/telecoms-saganist-47627496/tripify/collection/jcue42t/tripify-api-tests?action=share&creator=38609348)
 2. Click "Run in Postman" 
 3. Set up your environment variables:
 baseUrl: http://localhost:5000/api
@@ -2991,7 +2994,7 @@ Here's an example of testing one of our endpoints:
 
 <img 
  src="assets/postman.png" 
- alt="Tripify Logo" 
+ alt="TerraMedica Logo" 
  width="400" 
  style="margin-bottom: 20px;" 
 />
@@ -3000,7 +3003,7 @@ The test collection includes automated token handling and comprehensive validati
 
  <img 
     src="assets/postman.png" 
-    alt="Tripify Logo" 
+    alt="TerraMedica Logo" 
     width="400" 
     style="margin-bottom: 20px;" 
   />
@@ -3009,7 +3012,7 @@ The test collection includes automated token handling and comprehensive validati
 
 - Make sure to follow the [Installation](#-installation) steps first
 
-- Add a `.env` in the `backend` , `frontend`  of repo `Tripify`  with the following variables (replace the values with your own).
+- Add a `.env` in the `backend` , `frontend`  of repo `TerraMedica`  with the following variables (replace the values with your own).
 
 **NOTE**
 We use port 5000 for the Backend Server and port 3000 for the Frontend Server but feel free to adjust it to your liking
@@ -3031,14 +3034,14 @@ REACT_APP_GOOGLE_MAPS_API_KEY="<Your Google Maps Developer API Key>"
 - Start Backend Server
 
 ```bash
-cd Tripify/backend
+cd TerraMedica/backend
 npm run dev
 ```
 
 - Start Frontend Server in a different terminal
 
 ```bash
-cd Tripify/frontend
+cd TerraMedica/frontend
 npm start
 ```
 
@@ -3198,10 +3201,10 @@ npm start
    - Read system notifications
    - Stay informed about changes
 
-Need more help? Contact our support team at support@tripify.com
+Need more help? Contact our support team at support@TerraMedica.com
 ## 🤝 Contribute
 
-We welcome contributions to Tripify. If you want to contribute, it's as easy as:
+We welcome contributions to TerraMedica. If you want to contribute, it's as easy as:
 
 1. Fork the repo
 2. Create a new branch (`git checkout -b my-new-feature`)
