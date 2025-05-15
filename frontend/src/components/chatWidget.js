@@ -1,8 +1,10 @@
+// chatWidget.js - Complete implementation with all improvements
 import React, { useState, useEffect, useRef } from 'react';
 import { v4 as uuidv4 } from 'uuid'; // For generating session IDs
+import TreatmentCard from './TreatmentCard'; // Import the new component
 import './chatWidget.css';
 
-// Simple Chat Bubble Icon (You can replace with an SVG or image)
+// Chat Icon Component
 const ChatIcon = ({ onClick }) => (
   <svg onClick={onClick} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="32px" height="32px">
     <path d="M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm0 14H6l-2 2V4h16v12z"/>
@@ -10,7 +12,7 @@ const ChatIcon = ({ onClick }) => (
   </svg>
 );
 
-// Simple Close Icon
+// Close Icon Component
 const CloseIcon = ({ onClick }) => (
   <svg onClick={onClick} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="24px" height="24px">
     <path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/>
@@ -18,6 +20,83 @@ const CloseIcon = ({ onClick }) => (
   </svg>
 );
 
+// Utility function to parse AI responses into treatment card data
+const parseResponseToTreatmentCards = (content) => {
+  // Check if the content contains treatment options
+  if (!content.includes('TREATMENT/LOCATION:') && 
+      !content.includes('LOCATION:') && 
+      !content.includes('BENEFITS:')) {
+    return { introText: content, treatments: [], closingText: '' };
+  }
+  
+  // Split by treatment markers
+  const parts = content.split(/(?=TREATMENT\/LOCATION:|LOCATION:)/);
+  let introText = '';
+  const treatments = [];
+  
+  parts.forEach((part, index) => {
+    if (index === 0 && !part.includes('TREATMENT/LOCATION:') && !part.includes('LOCATION:')) {
+      // This is the introductory text
+      introText = part.trim();
+    } else {
+      // This is a treatment option
+      const lines = part.split('\n').filter(line => line.trim() !== '');
+      
+      let treatment = {
+        name: '',
+        benefits: '',
+        sustainability: '',
+        accommodation: '',
+        transportation: '',
+        cost: ''
+      };
+      
+      // Extract details
+      let currentField = '';
+      
+      lines.forEach(line => {
+        if (line.includes('TREATMENT/LOCATION:') || line.includes('LOCATION:')) {
+          treatment.name = line.split(':').slice(1).join(':').trim();
+          currentField = 'name';
+        } else if (line.includes('BENEFITS:')) {
+          treatment.benefits = line.split(':').slice(1).join(':').trim();
+          currentField = 'benefits';
+        } else if (line.includes('SUSTAINABILITY:')) {
+          treatment.sustainability = line.split(':').slice(1).join(':').trim();
+          currentField = 'sustainability';
+        } else if (line.includes('ACCOMMODATION:')) {
+          treatment.accommodation = line.split(':').slice(1).join(':').trim();
+          currentField = 'accommodation';
+        } else if (line.includes('TRANSPORTATION:')) {
+          treatment.transportation = line.split(':').slice(1).join(':').trim();
+          currentField = 'transportation';
+        } else if (line.includes('APPROXIMATE COST:') || line.includes('COST:')) {
+          treatment.cost = line.split(':').slice(1).join(':').trim();
+          currentField = 'cost';
+        } else if (currentField && !line.includes(':')) {
+          // This is continuation of the previous field
+          treatment[currentField] += ' ' + line.trim();
+        }
+      });
+      
+      treatments.push(treatment);
+    }
+  });
+  
+  // Extract any closing text (usually a question)
+  let closingText = '';
+  if (content.includes('?')) {
+    const parts = content.split('?');
+    if (parts.length > 1) {
+      const lastPart = parts[parts.length - 1];
+      if (!lastPart.includes('TREATMENT') && !lastPart.includes('BENEFITS')) {
+        closingText = '?' + lastPart;
+      }
+    }
+  }
+  
+  return { introText, treatments, closingText };
+};
 
 const ChatWidget = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -36,11 +115,6 @@ const ChatWidget = () => {
       localStorage.setItem('chatSessionId', currentSessionId);
     }
     setSessionId(currentSessionId);
-
-    // Optional: Load chat history when component mounts and session ID is available
-    // if (currentSessionId) {
-    //   fetchHistory(currentSessionId);
-    // }
   }, []);
 
   // Scroll to bottom of messages when new messages are added
@@ -51,33 +125,24 @@ const ChatWidget = () => {
     }
   }, [messages, isOpen]);
 
-  // const fetchHistory = async (sid) => {
-  //   if (!sid) return;
-  //   try {
-  //     const response = await fetch(`http://localhost:3000/api/chat/history/${sid}`);
-  //     if (!response.ok) {
-  //       throw new Error('Failed to fetch chat history');
-  //     }
-  //     const data = await response.json();
-  //     if (data.history && data.history.length > 0) {
-  //        setMessages(data.history);
-  //     } else {
-  //       // Add a default welcome message if history is empty
-  //       setMessages([{ role: 'assistant', content: 'Welcome to our Egyptian Medical Tourism Assistant! How can I help you today?' }]);
-  //     }
-  //   } catch (error) {
-  //     console.error('Error fetching history:', error);
-  //     // Add a default welcome message on error
-  //     setMessages([{ role: 'assistant', content: 'Hello! How can I assist you with Egyptian medical tourism today?' }]);
-  //   }
-  // };
-
   const toggleChat = () => {
     setIsOpen(!isOpen);
     if (!isOpen && messages.length === 0) {
-      // If opening for the first time and no messages, fetch history or show welcome
-      // fetchHistory(sessionId); // or set a default welcome message immediately
-      setMessages([{ role: 'assistant', content: 'Welcome! How can I help you explore sustainable medical tourism in Egypt?' }]);
+      // More engaging welcome message with a clear call to action
+      setMessages([{ 
+        role: 'assistant', 
+        content: `Welcome to Egypt's Sustainable Medical Tourism Assistant! 🌿 
+
+I can help you discover Egypt's unique natural healing environments while minimizing your environmental footprint.
+
+Some ways I can assist:
+- Find natural treatments for specific health conditions
+- Suggest eco-friendly accommodations near healing sites
+- Calculate the carbon footprint of different travel options
+- Create personalized medical tourism itineraries
+
+What health condition or wellness goal are you interested in exploring in Egypt?`
+      }]);
     }
   };
 
@@ -121,19 +186,41 @@ const ChatWidget = () => {
     }
   };
 
+  // Component to render message content with treatment cards if applicable
+  const MessageContent = ({ content }) => {
+    const { introText, treatments, closingText } = parseResponseToTreatmentCards(content);
+    
+    if (treatments.length === 0) {
+      // This is a regular conversational message
+      return <p>{content}</p>;
+    }
+    
+    return (
+      <>
+        {introText && <p>{introText}</p>}
+        
+        {treatments.map((treatment, index) => (
+          <TreatmentCard key={`treatment-${index}`} treatment={treatment} />
+        ))}
+        
+        {closingText && <p>{closingText}</p>}
+      </>
+    );
+  };
+
   return (
     <>
       {!isOpen && (
         <div className="chat-widget-icon" onClick={toggleChat}>
           <ChatIcon />
-          <span className="chat-widget-tooltip">Chat with AI</span>
+          <span className="chat-widget-tooltip">Medical Tourism Assistance</span>
         </div>
       )}
 
       {isOpen && (
         <div className="chat-widget-window">
           <div className="chat-widget-header">
-            <h3>AI Assistant</h3>
+            <h3>Egyptian Sustainable Medical Tourism</h3>
             <button onClick={toggleChat} className="chat-widget-close-btn">
               <CloseIcon />
             </button>
@@ -142,7 +229,12 @@ const ChatWidget = () => {
             {messages.map((msg, index) => (
               <div key={index} className={`chat-message ${msg.role}`}>
                 <div className="chat-message-bubble">
-                  <p>{msg.content}</p>
+                  {msg.role === 'assistant' ? (
+                    <MessageContent content={msg.content} />
+                  ) : (
+                    <p>{msg.content}</p>
+                  )}
+                  
                   {msg.role === 'assistant' && msg.sources && msg.sources.length > 0 && (
                     <div className="chat-message-sources">
                       <strong>Sources:</strong>

@@ -245,3 +245,65 @@
     transform: scale(1.0);
   }
 }
+.chat-message-bubble p {
+  margin: 0 0 12px 0;
+}
+
+/* Treatment option styles */
+.treatment-option {
+  margin: 15px 0;
+  padding: 12px;
+  background-color: rgba(255, 255, 255, 0.7);
+  border-radius: 8px;
+  border-left: 3px solid #28a745;
+}
+
+.treatment-option h4 {
+  margin: 0 0 8px 0;
+  color: #007bff;
+  font-size: 1.05em;
+}
+
+.treatment-detail {
+  display: flex;
+  margin-bottom: 6px;
+}
+
+.detail-label {
+  font-weight: bold;
+  min-width: 110px;
+  color: #555;
+}
+
+.detail-value {
+  flex: 1;
+}
+
+/* Sustainability indicator */
+.sustainability-indicator {
+  display: inline-block;
+  padding: 2px 6px;
+  border-radius: 12px;
+  font-size: 0.8em;
+  margin-left: 5px;
+  background-color: #dff0d8;
+  color: #3c763d;
+}
+
+/* Improve the scrollbar in the chat */
+.chat-widget-messages::-webkit-scrollbar {
+  width: 6px;
+}
+
+.chat-widget-messages::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+.chat-widget-messages::-webkit-scrollbar-thumb {
+  background: #c1c1c1;
+  border-radius: 3px;
+}
+
+.chat-widget-messages::-webkit-scrollbar-thumb:hover {
+  background: #a8a8a8;
+}

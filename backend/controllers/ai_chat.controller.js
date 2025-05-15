@@ -1,4 +1,4 @@
-// chatController.js - Updated for Egyptian sustainable medical tourism
+// ai_chat.controller.js - Updated for Egyptian sustainable medical tourism
 import { OpenAI } from 'openai';
 import { Pinecone } from '@pinecone-database/pinecone';
 import dotenv from 'dotenv';
@@ -13,7 +13,6 @@ const openai = new OpenAI({
 // Initialize Pinecone
 const pinecone = new Pinecone({
   apiKey: process.env.PINECONE_API_KEY,
-
 });
 const index = pinecone.index(process.env.PINECONE_INDEX);
 
@@ -43,7 +42,7 @@ async function extractMedicalConditions(message) {
   }
 }
 
-// Extract user preferences for sustainability
+// Extract user preferences for sustainability and medical tourism
 async function extractPreferences(message, history) {
   try {
     // Combine current message with history for context
@@ -54,13 +53,17 @@ async function extractPreferences(message, history) {
       messages: [
         {
           role: "system",
-          content: `Extract user preferences regarding travel and sustainability from the conversation. 
+          content: `Extract user preferences regarding medical tourism and sustainability from the conversation. 
           Analyze for: 
-          1. Carbon consciousness (high/medium/low)
-          2. Preferred transportation types
-          3. Budget sensitivity (high/medium/low)
-          4. Preferred treatment types 
-          5. Accommodation preferences
+          1. Medical conditions or symptoms mentioned
+          2. Carbon consciousness (high/medium/low)
+          3. Preferred transportation types
+          4. Budget sensitivity (high/medium/low) 
+          5. Preferred treatment types
+          6. Accommodation preferences
+          7. Specific Egyptian locations of interest
+          8. Duration of stay (if mentioned)
+          9. Travel companions (solo, family, etc.)
           Return a JSON object with these fields. Use null if a preference isn't mentioned.`
         },
         { role: "user", content: `Conversation history:\n${historyText}\n\nCurrent message: ${message}` }
@@ -73,6 +76,66 @@ async function extractPreferences(message, history) {
   } catch (error) {
     console.error("Error extracting preferences:", error);
     return {};
+  }
+}
+
+// Helper function to format responses with proper structure
+async function structureResponse(content, context) {
+  // If content already contains structured format, return as is
+  if (content.includes('TREATMENT/LOCATION:') || content.includes('BENEFITS:')) {
+    return content;
+  }
+  
+  // Check if this is likely a treatment/location recommendation
+  const hasRecommendationIndicators = 
+    (content.toLowerCase().includes('recommend') || 
+     content.toLowerCase().includes('option') || 
+     content.toLowerCase().includes('package') || 
+     content.toLowerCase().includes('treatment')) &&
+    content.length > 300; // Longer responses likely contain recommendations
+  
+  if (!hasRecommendationIndicators) {
+    return content; // Return conversational responses as is
+  }
+  
+  // For responses that likely contain recommendations but aren't formatted yet
+  return structureWithGPT(content, context);
+}
+
+// Use GPT to structure the response
+async function structureWithGPT(content) {
+  try {
+    const response = await openai.chat.completions.create({
+      model: "gpt-4.1-nano",
+      messages: [
+        {
+          role: "system",
+          content: `You are a formatting assistant for medical tourism information. 
+          Take the following unstructured treatment recommendation and reformat it into a 
+          clearly structured format:
+          
+          1. Begin with a brief introduction
+          2. Format each treatment option as:
+             TREATMENT/LOCATION: [Name]
+             BENEFITS: [Health benefits]
+             SUSTAINABILITY: [Environmental features]
+             ACCOMMODATION: [Options]
+             TRANSPORTATION: [Options with carbon footprint]
+             APPROXIMATE COST: [Range]
+          
+          3. End with the original closing question or statement
+          
+          Preserve ALL information from the original text but make it more organized.`
+        },
+        { role: "user", content: content }
+      ],
+      temperature: 0.3,
+    });
+    
+    return response.choices[0].message.content;
+  } catch (error) {
+    console.error("Error structuring response:", error);
+    return content; // Fall back to original content if structuring fails
   }
 }
 
@@ -213,19 +276,36 @@ export const processChat = async (req, res) => {
     const messages = [
       { 
         role: "system", 
-        content: `You are a specialized medical tourism assistant for Egypt's natural healing destinations. 
+        content: `You are a friendly and helpful medical tourism assistant for Egypt's natural healing destinations. 
 Focus exclusively on Egypt's natural healing environments and sustainable eco-tourism.
 
-You help users find appropriate natural treatment locations in Egypt based on their medical conditions and create personalized, environmentally-friendly travel itineraries.
+CONVERSATION STYLE:
+1. Always be conversational and friendly - chat naturally like a human guide would
+2. Ask clarifying questions when needed before providing recommendations
+3. Keep initial responses brief and engaging
+4. Only provide detailed recommendations after understanding the user's needs
+5. Always acknowledge the user's questions or concerns first
+
+RECOMMENDATION FORMAT:
+When presenting treatment options or travel packages, ALWAYS format them in a clean, organized way:
+
+1. Start with a brief introduction (1-2 sentences)
+2. Present each option in a clearly structured format:
+   - TREATMENT/LOCATION: [Name]
+   - BENEFITS: [Brief description of health benefits]
+   - SUSTAINABILITY: [Environmental benefits] 
+   - ACCOMMODATION: [Options available]
+   - TRANSPORTATION: [How to get there, with carbon footprint]
+   - APPROXIMATE COST: [Budget range]
+
+3. Finish with a follow-up question to refine recommendations
 
 Important guidelines:
 1. Only recommend natural treatments available in Egypt's unique environments (oases, desert climate, sulfur springs, salt lakes, black sand beaches, Nile River)
 2. Emphasize sustainability and low carbon footprint in all recommendations
 3. Highlight the carbon emissions for different transportation options
-4. Create personalized itineraries that balance treatment effectiveness with environmental responsibility
-5. If you don't have information on a specific condition, suggest the most appropriate Egyptian natural healing location
-6. Explain how Egypt's natural environments provide unique healing properties not found elsewhere
-7. Always mention both the healing and environmental benefits of your recommendations
+4. If you don't have information on a specific condition, suggest the most appropriate Egyptian natural healing location
+5. Explain how Egypt's natural environments provide unique healing properties not found elsewhere
 
 Use the following tourism information to create recommendations:
 
@@ -249,13 +329,19 @@ ${context}`
     
     const assistantResponse = completion.choices[0].message.content;
     
+    // Before returning response, check if it needs formatting
+    let formattedResponse = assistantResponse;
+    if (medicalConditions.length > 0 || Object.keys(userPreferences).length > 0) {
+      formattedResponse = await structureResponse(assistantResponse, context);
+    }
+    
     // Save the exchange to history
     chatHistory[sessionId].push({ role: "user", content: message });
-    chatHistory[sessionId].push({ role: "assistant", content: assistantResponse });
+    chatHistory[sessionId].push({ role: "assistant", content: formattedResponse });
     
     // Send response back to client
     res.json({
-      answer: assistantResponse,
+      answer: formattedResponse,
       sources: relevantInfo.map(match => ({
         title: match.metadata.title || 'Egyptian Tourism Information',
         location: match.metadata.location || 'Egypt',
