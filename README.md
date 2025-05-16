@@ -20,7 +20,7 @@
 
 ## Description
 
-TerraMedica is a comprehensive platform for medical tourism, designed to help users explore the diverse regions of Egypt while prioritizing environmentally friendly (CO₂-conscious) travel and healing. Our platform connects travelers with natural healing practices, eco-friendly accommodations, and authentic Egyptian wellness experiences. Discover therapeutic destinations, traditional medicine, and sustainable travel options that minimize your carbon footprint. Whether you seek natural remedies, climate therapies, or holistic wellness, TerraMedica empowers you to heal and rejuvenate in harmony with Egypt's rich heritage and environment.
+TerraMedica is a comprehensive platform for medical tourism, designed to help users explore the diverse regions of Egypt while prioritizing environmentally friendly (CO₂-conscious) travel and healing. Our platform connects travelers with natural healing practices, eco-friendly accommodations, and authentic Egyptian wellness experiences. Discover therapeutic destinations, traditional medicine, and sustainable travel options that minimize your carbon footprint. Whether you seek natural remedies, climate therapies, or holistic wellness, TerraMedica empowers you to heal and rejuvenate in harmony with Egypt's rich heritage and environment. The project is deployed and accessible through [this link](https://terra-medica.vercel.app/)
 
 ## Table of Contents
 
