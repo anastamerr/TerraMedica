@@ -158,7 +158,7 @@ npm run compile:all
 - Upload required documents for Tour Guide registration.
 <img 
     src="assets/register.png" 
-    alt="Tripify Logo" 
+    alt="TerraMedica Logo" 
     width="400" 
     style="margin-bottom: 20px;" 
   />
@@ -170,7 +170,7 @@ npm run compile:all
 
 <img 
     src="assets/login.png" 
-    alt="Tripify Logo" 
+    alt="TerraMedica Logo" 
     width="400" 
     style="margin-bottom: 20px;" 
   />
@@ -193,7 +193,7 @@ npm run compile:all
 
 <img 
     src="assets/admin.png" 
-    alt="Tripify Logo" 
+    alt="TerraMedica Logo" 
     width="400" 
     style="margin-bottom: 20px;" 
   />
@@ -480,7 +480,7 @@ const sendEmail = async (to, subject, text, html = "") => {
     });
 
     const mailOptions = {
-      from: "tripify11@outlook.com",  // Hardcoded sender email
+      from: "TerraMedica@outlook.com",  // Hardcoded sender email
       to,  // Recipient(s)
       subject,  // Subject line
       text,  // Plain text body
@@ -2987,7 +2987,7 @@ We use `Postman` to manually test all our api references by making sure the resp
 ### Test Our API
 You can run our complete test suite yourself:
 
-1. Access our [TerraMedica API Tests Collection](https://www.postman.com/telecoms-saganist-47627496/tripify/collection/jcue42t/tripify-api-tests?action=share&creator=38609348)
+1. Access our [TerraMedica API Tests Collection](https://www.postman.com/telecoms-saganist-47627496/TerraMedica/collection/jcue42t/TerraMedica-api-tests?action=share&creator=38609348)
 2. Click "Run in Postman" 
 3. Set up your environment variables:
 baseUrl: https://terramedica-backend-306ad1b57632.herokuapp.com/api
